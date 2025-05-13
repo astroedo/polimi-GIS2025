@@ -1,4 +1,4 @@
-# polimi-GIS2025
+# GIS - Laboratory 2025
 Air pollution is the presence of harmful substances in the air, including gases and particulates, that can negatively
 impact human health and the environment. The main sources of air pollution include industrial emissions, vehicle
 exhaust, burning of fossil fuels, agricultural activities, and natural events like wildfires and volcanic eruptions. These
