@@ -12,457 +12,200 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@8.2.0/ol.css" type="text/css">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-			#map {
-				width: 100%;
-				height: 600px;
-				border: 2px solid #ddd;
-				border-radius: 4px;
+			body, html {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				overflow: hidden;
 			}
-			.map-controls {
-				margin: 1em 0;
-				padding: 1em;
-				background: #f8f8f8;
-				border-radius: 4px;
+			#map {
+				width: 100vw;
+				height: 100vh;
+			}
+			.layer-selector {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				background: rgba(255, 255, 255, 0.9);
+				padding: 15px;
+				border-radius: 5px;
+				box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+				z-index: 1000;
+				font-family: Arial, sans-serif;
+			}
+			.layer-selector h3 {
+				margin: 0 0 10px 0;
+				font-size: 16px;
+				color: #333;
 			}
 			.layer-control {
-				margin: 0.5em 0;
+				margin: 5px 0;
 			}
-			.legend {
-				background: white;
-				padding: 1em;
-				border: 1px solid #ddd;
-				border-radius: 4px;
-				margin-top: 1em;
+			.layer-control input[type="radio"] {
+				margin-right: 8px;
 			}
-			.bivariate-legend {
-				display: grid;
-				grid-template-columns: repeat(5, 1fr);
-				gap: 2px;
-				max-width: 200px;
+			.layer-control label {
+				font-size: 14px;
+				color: #555;
+				cursor: pointer;
 			}
-			.legend-cell {
-				width: 30px;
-				height: 30px;
-				border: 1px solid #ccc;
-				font-size: 8px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
+			.coordinates {
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+				background: rgba(0, 0, 0, 0.7);
+				color: white;
+				padding: 8px 12px;
+				border-radius: 3px;
+				font-family: monospace;
+				font-size: 12px;
+				z-index: 1000;
+			}
+			.home-button {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				background: #5e42a6;
+				color: white;
+				padding: 10px 15px;
+				border: none;
+				border-radius: 5px;
+				text-decoration: none;
+				font-weight: bold;
+				z-index: 1000;
+				box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+			}
+			.home-button:hover {
+				background: #4a3584;
 			}
 		</style>
 	</head>
-	<body class="is-preload">
+	<body>
 
-		<!-- Header -->
-			<header id="header">
-				<a href="index.html" class="title">Air Quality Mapping</a>
-				<nav>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="no2.html">NO₂</a></li>
-						<li><a href="pm25.html">PM2.5</a></li>
-						<li><a href="pm10.html">PM10</a></li>
-						<li><a href="webgis.html" class="active">WebGIS</a></li>
-					</ul>
-				</nav>
-			</header>
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Main -->
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">Interactive WebGIS</h1>
-							<p>Explore air quality data through our interactive web mapping application. Use the controls below to switch between different pollutants, view bivariate maps, and analyze population exposure patterns.</p>
-
-							<!-- Map Controls -->
-							<div class="map-controls">
-								<div class="row">
-									<div class="col-3 col-12-medium">
-										<h3>Pollutant Layers</h3>
-										<div class="layer-control">
-											<input type="radio" id="no2-layer" name="pollutant" value="no2" checked>
-											<label for="no2-layer">NO₂ Concentration (2020)</label>
-										</div>
-										<div class="layer-control">
-											<input type="radio" id="pm25-layer" name="pollutant" value="pm25">
-											<label for="pm25-layer">PM2.5 Concentration (2020)</label>
-										</div>
-										<div class="layer-control">
-											<input type="radio" id="pm10-layer" name="pollutant" value="pm10">
-											<label for="pm10-layer">PM10 Concentration (2020)</label>
-										</div>
-									</div>
-									<div class="col-3 col-12-medium">
-										<h3>Map Types</h3>
-										<div class="layer-control">
-											<input type="radio" id="concentration-map" name="maptype" value="concentration" checked>
-											<label for="concentration-map">Concentration Classes</label>
-										</div>
-										<div class="layer-control">
-											<input type="radio" id="bivariate-map" name="maptype" value="bivariate">
-											<label for="bivariate-map">Bivariate (Pollution vs Population)</label>
-										</div>
-										<div class="layer-control">
-											<input type="radio" id="aad-map" name="maptype" value="aad">
-											<label for="aad-map">Annual Average Difference (2022)</label>
-										</div>
-									</div>
-									<div class="col-3 col-12-medium">
-										<h3>Overlay Layers</h3>
-										<div class="layer-control">
-											<input type="checkbox" id="admin-boundaries" checked>
-											<label for="admin-boundaries">Administrative Boundaries</label>
-										</div>
-										<div class="layer-control">
-											<input type="checkbox" id="population-layer">
-											<label for="population-layer">Population Density</label>
-										</div>
-										<div class="layer-control">
-											<input type="checkbox" id="landcover-layer">
-											<label for="landcover-layer">Land Cover (2022)</label>
-										</div>
-									</div>
-									<div class="col-3 col-12-medium">
-										<h3>Map Settings</h3>
-										<div class="layer-control">
-											<label for="opacity-slider">Layer Opacity:</label>
-											<input type="range" id="opacity-slider" min="0" max="1" step="0.1" value="0.8">
-											<span id="opacity-value">80%</span>
-										</div>
-										<div class="layer-control">
-											<button id="reset-view" class="button small">Reset View</button>
-											<button id="fullscreen" class="button small">Fullscreen</button>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Interactive Map -->
-							<div id="map"></div>
-
-							<!-- Legend and Charts Section -->
-							<div class="row" style="margin-top: 2em;">
-								<div class="col-6 col-12-medium">
-									<div class="legend">
-										<h3>Legend</h3>
-										<div id="concentration-legend">
-											<h4>Concentration Classes (μg/m³)</h4>
-											<div class="row">
-												<div class="col-6">
-													<div style="background: #2E8B57; color: white; padding: 5px; margin: 2px;">Class 1: ≤ 10 (Good)</div>
-													<div style="background: #FFD700; padding: 5px; margin: 2px;">Class 2: 10-25 (Moderate)</div>
-													<div style="background: #FF8C00; color: white; padding: 5px; margin: 2px;">Class 3: 25-40 (Unhealthy for Sensitive)</div>
-												</div>
-												<div class="col-6">
-													<div style="background: #DC143C; color: white; padding: 5px; margin: 2px;">Class 4: 40-50 (Unhealthy)</div>
-													<div style="background: #8B0000; color: white; padding: 5px; margin: 2px;">Class 5: > 50 (Very Unhealthy)</div>
-												</div>
-											</div>
-										</div>
-										
-										<div id="bivariate-legend" style="display: none;">
-											<h4>Bivariate Legend</h4>
-											<p>Pollution vs Population</p>
-											<div class="bivariate-legend">
-												<div class="legend-cell" style="background: #e8e8e8;">1,1</div>
-												<div class="legend-cell" style="background: #b8d6e8;">1,2</div>
-												<div class="legend-cell" style="background: #88c4e8;">1,3</div>
-												<div class="legend-cell" style="background: #58b2e8;">1,4</div>
-												<div class="legend-cell" style="background: #28a0e8;">1,5</div>
-												<div class="legend-cell" style="background: #e8d6b8;">2,1</div>
-												<div class="legend-cell" style="background: #d6c4a8;">2,2</div>
-												<div class="legend-cell" style="background: #c4b298;">2,3</div>
-												<div class="legend-cell" style="background: #b2a088;">2,4</div>
-												<div class="legend-cell" style="background: #a08e78;">2,5</div>
-												<div class="legend-cell" style="background: #e8c488;">3,1</div>
-												<div class="legend-cell" style="background: #d6b278;">3,2</div>
-												<div class="legend-cell" style="background: #c4a068;">3,3</div>
-												<div class="legend-cell" style="background: #b28e58;">3,4</div>
-												<div class="legend-cell" style="background: #a07c48;">3,5</div>
-												<div class="legend-cell" style="background: #e8b258;">4,1</div>
-												<div class="legend-cell" style="background: #d6a048;">4,2</div>
-												<div class="legend-cell" style="background: #c48e38;">4,3</div>
-												<div class="legend-cell" style="background: #b27c28;">4,4</div>
-												<div class="legend-cell" style="background: #a06a18;">4,5</div>
-												<div class="legend-cell" style="background: #e8a028;">5,1</div>
-												<div class="legend-cell" style="background: #d68e18;">5,2</div>
-												<div class="legend-cell" style="background: #c47c08;">5,3</div>
-												<div class="legend-cell" style="background: #b26a00;">5,4</div>
-												<div class="legend-cell" style="background: #a05800;">5,5</div>
-											</div>
-											<div style="margin-top: 10px;">
-												<div style="font-size: 12px;">
-													<span style="float: left;">Low Population</span>
-													<span style="float: right;">High Population</span>
-													<div style="clear: both; text-align: center; margin-top: 10px;">
-														<div>High Pollution ↑</div>
-														<div style="margin-top: 20px;">Low Pollution ↓</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-6 col-12-medium">
-									<div class="legend">
-										<h3>Population Exposure Chart</h3>
-										<div id="exposure-chart">
-											<!-- Placeholder for dynamic chart -->
-											<div style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-												<p><strong>Population Exposure Distribution</strong><br />
-												<em>Pie chart showing population percentage in each concentration class</em><br />
-												<small>Chart updates based on selected pollutant</small></p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Time Series Analysis -->
-							<section style="margin-top: 2em;">
-								<h2>Temporal Analysis</h2>
-								<div class="row">
-									<div class="col-8 col-12-medium">
-										<div class="box">
-											<h3>Time Series Trends (2013-2022)</h3>
-											<!-- Placeholder for interactive time series chart -->
-											<div style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-												<p><strong>Interactive Time Series Chart</strong><br />
-												<em>Annual average concentrations by land cover class</em><br />
-												<small>Click on map features to update chart for specific regions</small></p>
-											</div>
-										</div>
-									</div>
-									<div class="col-4 col-12-medium">
-										<h3>Analysis Controls</h3>
-										<div class="layer-control">
-											<label for="year-slider">Year:</label>
-											<input type="range" id="year-slider" min="2013" max="2022" value="2020">
-											<span id="year-value">2020</span>
-										</div>
-										<div class="layer-control">
-											<label for="land-cover-filter">Land Cover Filter:</label>
-											<select id="land-cover-filter">
-												<option value="all">All Classes</option>
-												<option value="settlement">Settlement</option>
-												<option value="cropland">Cropland</option>
-												<option value="grassland">Grassland</option>
-												<option value="forest">Forest</option>
-												<option value="wetland">Wetland</option>
-												<option value="other">Other Lands</option>
-											</select>
-										</div>
-										<div class="layer-control">
-											<button id="download-data" class="button">Download Data</button>
-										</div>
-									</div>
-								</div>
-							</section>
-
-							<!-- Data Information -->
-							<section>
-								<h2>Data Information</h2>
-								<div class="row">
-									<div class="col-6 col-12-medium">
-										<h3>Datasets</h3>
-										<ul>
-											<li><strong>Air Quality:</strong> CAMS European Reanalysis (2013-2022)</li>
-											<li><strong>Population:</strong> WorldPop 2020 (100m resolution)</li>
-											<li><strong>Land Cover:</strong> ESA CCI Land Cover 2022</li>
-											<li><strong>Boundaries:</strong> FAO GAUL Level 2</li>
-										</ul>
-									</div>
-									<div class="col-6 col-12-medium">
-										<h3>Technical Details</h3>
-										<ul>
-											<li><strong>Coordinate System:</strong> WGS84 (EPSG:4326)</li>
-											<li><strong>Spatial Resolution:</strong> ~1km for air quality data</li>
-											<li><strong>Temporal Coverage:</strong> 2013-2022 (monthly averages)</li>
-											<li><strong>Health Guidelines:</strong> EU limits and WHO AQG</li>
-										</ul>
-									</div>
-								</div>
-							</section>
-
-							<!-- Instructions -->
-							<section>
-								<h2>How to Use the WebGIS</h2>
-								<div class="features">
-									<section>
-										<span class="icon solid major fa-mouse-pointer"></span>
-										<h3>Navigation</h3>
-										<p>Use mouse to pan and zoom. Double-click to zoom in. Use mouse wheel for precise zoom control.</p>
-									</section>
-									<section>
-										<span class="icon solid major fa-layer-group"></span>
-										<h3>Layer Control</h3>
-										<p>Switch between pollutants and map types using radio buttons. Toggle overlay layers with checkboxes.</p>
-									</section>
-									<section>
-										<span class="icon solid major fa-info-circle"></span>
-										<h3>Feature Information</h3>
-										<p>Click on map features to view detailed information and update charts for specific regions.</p>
-									</section>
-									<section>
-										<span class="icon solid major fa-chart-line"></span>
-										<h3>Temporal Analysis</h3>
-										<p>Use the year slider to explore temporal changes. Filter by land cover types for focused analysis.</p>
-									</section>
-								</div>
-							</section>
-
-							<!-- Navigation -->
-							<section>
-								<ul class="actions fit">
-									<li><a href="pm10.html" class="button">← Previous: PM10 Analysis</a></li>
-									<li><a href="index.html" class="button primary">Back to Home</a></li>
-								</ul>
-							</section>
-
-						</div>
-					</section>
-
+		<!-- Layer Selector -->
+		<div class="layer-selector">
+			<h3>Germany Air Quality 2020</h3>
+			<div class="layer-control">
+				<input type="radio" id="no2-layer" name="pollutant" value="no2" checked>
+				<label for="no2-layer">NO₂ Concentration</label>
 			</div>
+			<div class="layer-control">
+				<input type="radio" id="pm25-layer" name="pollutant" value="pm25">
+				<label for="pm25-layer">PM2.5 Concentration</label>
+			</div>
+			<div class="layer-control">
+				<input type="radio" id="pm10-layer" name="pollutant" value="pm10">
+				<label for="pm10-layer">PM10 Concentration</label>
+			</div>
+		</div>
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; 2025 GIS Lab Project. All rights reserved.</li>
-						<li>Template: <a href="http://html5up.net">HTML5 UP</a></li>
-						<li>Data: <a href="https://atmosphere.copernicus.eu/">Copernicus CAMS</a></li>
-					</ul>
-				</div>
-			</footer>
+		<!-- Home Button -->
+		<a href="index.html" class="home-button">← Home</a>
+
+		<!-- Coordinates Display -->
+		<div class="coordinates" id="coordinates">
+			Lat: 0.000000, Lon: 0.000000
+		</div>
+
+		<!-- Full Screen Map -->
+		<div id="map"></div>
 
 		<!-- Scripts -->
-			<script src="https://cdn.jsdelivr.net/npm/ol@8.2.0/dist/ol.js"></script>
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/ol@8.2.0/dist/ol.js"></script>
+		
+		<script>
+			// WebGIS Functionality
+			let map, currentLayer, coordinatesElement;
 			
-			<script>
-				// WebGIS Functionality
-				let map, currentLayer;
-				
-				// Initialize map
-				function initMap() {
-					map = new ol.Map({
-						target: 'map',
-						layers: [
-							new ol.layer.Tile({
-								source: new ol.source.OSM()
-							})
-						],
-						view: new ol.View({
-							center: ol.proj.fromLonLat([10.0, 45.0]), // Centered on Northern Italy
-							zoom: 6
+			// Initialize map
+			function initMap() {
+				map = new ol.Map({
+					target: 'map',
+					layers: [
+						new ol.layer.Tile({
+							source: new ol.source.OSM()
 						})
-					});
-					
-					// Add default NO2 layer
-					addPollutantLayer('no2', 'concentration');
+					],
+					view: new ol.View({
+						center: ol.proj.fromLonLat([10.4515, 51.1657]), // Centered on Germany
+						zoom: 6
+					})
+				});
+				
+				// Add coordinates display
+				coordinatesElement = document.getElementById('coordinates');
+				
+				// Update coordinates on mouse move
+				map.on('pointermove', function(event) {
+					const coordinate = ol.proj.toLonLat(event.coordinate);
+					const lon = coordinate[0].toFixed(6);
+					const lat = coordinate[1].toFixed(6);
+					coordinatesElement.innerHTML = `Lat: ${lat}, Lon: ${lon}`;
+				});
+				
+				// Add default NO2 layer
+				addPollutantLayer('no2');
+			}
+			
+			// Add pollutant layer using images
+			function addPollutantLayer(pollutant) {
+				// Remove existing pollutant layer
+				if (currentLayer) {
+					map.removeLayer(currentLayer);
 				}
 				
-				// Add pollutant layer from GeoServer
-				function addPollutantLayer(pollutant, mapType) {
-					// Remove existing pollutant layer
-					if (currentLayer) {
-						map.removeLayer(currentLayer);
-					}
+				// Map pollutant names to your exact file names
+				let fileNames = {
+					'no2': 'GERMANY_average_no2_2022.tif',
+					'pm25': 'Germany_average_pm25_2022.tif', 
+					'pm10': 'GERMANY_average_pm10_2022.tif'
+				};
+				
+				let imagePath = `data/${fileNames[pollutant]}`;
+				console.log('Loading image:', imagePath);
+				
+				// Germany extent coordinates [west, south, east, north] in WGS84
+				let extent = [5.98865807458, 47.3024876979, 15.0169958839, 54.983104153];
+				
+				// Test if image exists first
+				let img = new Image();
+				img.onload = function() {
+					console.log('Successfully loaded:', imagePath);
 					
-					// Construct layer name based on selections
-					let layerName = `air_quality:${getCountryCode()}_${pollutant}_2020_${mapType}`;
-					
-					currentLayer = new ol.layer.Tile({
-						source: new ol.source.TileWMS({
-							url: 'http://localhost:8080/geoserver/air_quality/wms', // Update with your GeoServer URL
-							params: {
-								'LAYERS': layerName,
-								'TILED': true
-							},
-							serverType: 'geoserver'
+					currentLayer = new ol.layer.Image({
+						source: new ol.source.ImageStatic({
+							url: imagePath,
+							projection: 'EPSG:4326',
+							imageExtent: extent
 						}),
-						opacity: parseFloat(document.getElementById('opacity-slider').value)
+						opacity: 0.8
 					});
 					
 					map.addLayer(currentLayer);
-				}
+				};
 				
-				// Get country code based on case study
-				function getCountryCode() {
-					// This should be dynamically set based on your group's assigned country
-					return 'italy'; // Example - replace with your country
-				}
+				img.onerror = function() {
+					console.error('Failed to load image:', imagePath);
+					alert(`Failed to load: ${imagePath}\nPlease check the file exists and is accessible.`);
+				};
 				
-				// Event listeners
-				document.addEventListener('DOMContentLoaded', function() {
-					initMap();
-					
-					// Pollutant layer controls
-					document.querySelectorAll('input[name="pollutant"]').forEach(radio => {
-						radio.addEventListener('change', function() {
-							if (this.checked) {
-								const mapType = document.querySelector('input[name="maptype"]:checked').value;
-								addPollutantLayer(this.value, mapType);
-								updateLegend(this.value, mapType);
-							}
-						});
-					});
-					
-					// Map type controls
-					document.querySelectorAll('input[name="maptype"]').forEach(radio => {
-						radio.addEventListener('change', function() {
-							if (this.checked) {
-								const pollutant = document.querySelector('input[name="pollutant"]:checked').value;
-								addPollutantLayer(pollutant, this.value);
-								updateLegend(pollutant, this.value);
-							}
-						});
-					});
-					
-					// Opacity control
-					document.getElementById('opacity-slider').addEventListener('input', function() {
-						if (currentLayer) {
-							currentLayer.setOpacity(this.value);
+				img.src = imagePath;
+			}
+			
+			// Event listeners
+			document.addEventListener('DOMContentLoaded', function() {
+				initMap();
+				
+				// Pollutant layer controls
+				document.querySelectorAll('input[name="pollutant"]').forEach(radio => {
+					radio.addEventListener('change', function() {
+						if (this.checked) {
+							addPollutantLayer(this.value);
 						}
-						document.getElementById('opacity-value').textContent = Math.round(this.value * 100) + '%';
-					});
-					
-					// Reset view button
-					document.getElementById('reset-view').addEventListener('click', function() {
-						map.getView().setCenter(ol.proj.fromLonLat([10.0, 45.0]));
-						map.getView().setZoom(6);
-					});
-					
-					// Year slider
-					document.getElementById('year-slider').addEventListener('input', function() {
-						document.getElementById('year-value').textContent = this.value;
-						// Update temporal visualization
 					});
 				});
-				
-				// Update legend based on current selections
-				function updateLegend(pollutant, mapType) {
-					const concentrationLegend = document.getElementById('concentration-legend');
-					const bivariateLegend = document.getElementById('bivariate-legend');
-					
-					if (mapType === 'bivariate') {
-						concentrationLegend.style.display = 'none';
-						bivariateLegend.style.display = 'block';
-					} else {
-						concentrationLegend.style.display = 'block';
-						bivariateLegend.style.display = 'none';
-					}
-				}
-			</script>
+			});
+		</script>
 
 	</body>
 </html>

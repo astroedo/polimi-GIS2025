@@ -197,10 +197,10 @@ input, select, textarea {
 		}
 
 			h1.major:after {
-				background-image: -moz-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: -webkit-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: -ms-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: linear-gradient(to right, #5e42a6, #b74e91);
+				background-image: -moz-linear-gradient(to right, #5e42a6, #ff88a6);
+				background-image: -webkit-linear-gradient(to right, #5e42a6, #ff88a6);
+				background-image: -ms-linear-gradient(to right, #5e42a6, #ff88a6);
+				background-image: linear-gradient(to right, #5e42a6, #ff88a6);
 				-moz-transition: max-width 0.2s ease;
 				-webkit-transition: max-width 0.2s ease;
 				-ms-transition: max-width 0.2s ease;
@@ -2444,7 +2444,7 @@ input, select, textarea {
 		input[type="radio"]:checked + label:before {
 			background: #ffffff;
 			border-color: #ffffff;
-			color: #b74e91;
+			color: #ff88a6;
 			content: '\f00c';
 		}
 
@@ -3240,7 +3240,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style1 {
-			background-color: #5e42a6;
+			background-color: #2a6682;
 		}
 
 		.wrapper.style1-alt {
@@ -3248,7 +3248,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style2 {
-			background-color: #5052b5;
+			background-color: #32788f;
 		}
 
 		.wrapper.style2-alt {
@@ -3256,7 +3256,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style3 {
-			background-color: #b74e91;
+			background-color: #cf8fbb;
 		}
 
 		.wrapper.style3-alt {
@@ -3765,10 +3765,10 @@ input, select, textarea {
 			}
 
 			#sidebar nav a:after {
-				background-image: -moz-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: -webkit-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: -ms-linear-gradient(to right, #5e42a6, #b74e91);
-				background-image: linear-gradient(to right, #5e42a6, #b74e91);
+				background-image: -moz-linear-gradient(to right, #5e42a6, #ff88a6);
+				background-image: -webkit-linear-gradient(to right, #5e42a6, #ff88a6);
+				background-image: -ms-linear-gradient(to right, #5e42a6, #ff88a6);
+				background-image: linear-gradient(to right, #5e42a6, #ff88a6);
 				-moz-transition: max-width 0.2s ease;
 				-webkit-transition: max-width 0.2s ease;
 				-ms-transition: max-width 0.2s ease;
@@ -3857,7 +3857,7 @@ input, select, textarea {
 
 						#sidebar nav a:after {
 							background-image: none;
-							background-color: #b74e91;
+							background-color: #ff88a6;
 						}
 
 		}
@@ -3874,7 +3874,7 @@ input, select, textarea {
 
 	#intro {
 		background-attachment: fixed;
-		background-image: url("images/intro.svg");
+		background-image: url("images/ruhr.jpg");
 		background-position: top right;
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
@@ -3907,3 +3907,18 @@ input, select, textarea {
 			}
 
 		}
+
+
+
+.member-photo {
+	margin-bottom: 1.5em;
+}
+
+.member-image {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: solid 2px rgba(255, 255, 255, 0.15);
+	transition: transform 0.3s ease, border-color 0.3s ease;
+}
