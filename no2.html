@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<!--
+	NO2 Analysis - Air Quality Mapping Project
+	GIS Lab Project 2024/25
+-->
+<html>
+	<head>
+		<title>NO₂ Analysis - Air Quality Mapping</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Air Quality Mapping</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="no2.html" class="active">NO₂</a></li>
+						<li><a href="pm25.html">PM2.5</a></li>
+						<li><a href="pm10.html">PM10</a></li>
+						<li><a href="webgis.html">WebGIS</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Nitrogen Dioxide (NO₂) Analysis</h1>
+							<span class="image fit"><img src="images/no2-banner.jpg" alt="NO2 concentration visualization" /></span>
+							
+							<!-- Introduction -->
+							<section>
+								<h2>Overview</h2>
+								<p>Nitrogen dioxide (NO₂) is a major air pollutant primarily emitted from vehicle exhausts, power plants, and industrial facilities. It plays a crucial role in atmospheric chemistry as a precursor to ground-level ozone and secondary particulate matter formation. Our analysis covers the period 2013-2022, examining spatial patterns, temporal trends, and relationships with land cover types across the study area.</p>
+								
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Health Impacts</h3>
+										<ul>
+											<li>Respiratory tract irritation and inflammation</li>
+											<li>Increased susceptibility to respiratory infections</li>
+											<li>Exacerbation of asthma and bronchitis</li>
+											<li>Reduced lung function development in children</li>
+										</ul>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Major Sources</h3>
+										<ul>
+											<li>Motor vehicle emissions (primary source)</li>
+											<li>Power plant and industrial combustion</li>
+											<li>Off-road equipment and machinery</li>
+											<li>Residential heating systems</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Concentration Analysis -->
+							<section>
+								<h2>Concentration Classifications</h2>
+								<p>NO₂ concentrations are classified according to both EU annual limit values and WHO air quality guidelines to assess compliance and health risks.</p>
+								
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Class</th>
+												<th>EU Classification (μg/m³)</th>
+												<th>WHO Classification (μg/m³)</th>
+												<th>Health Assessment</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>≤ 10</td>
+												<td>≤ 10</td>
+												<td>Good - Minimal health risk</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>10-25</td>
+												<td>10-20</td>
+												<td>Moderate - Acceptable for most people</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>25-40</td>
+												<td>20-30</td>
+												<td>Unhealthy for sensitive groups</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>40-50</td>
+												<td>30-40</td>
+												<td>Unhealthy - Exceeds EU limit</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>&gt; 50</td>
+												<td>&gt; 40</td>
+												<td>Very unhealthy - Significant health risk</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</section>
+
+							<!-- Temporal Trends -->
+							<section>
+								<h2>Temporal Analysis (2013-2022)</h2>
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Annual Average Trends</h3>
+										<p>The time series analysis reveals significant temporal variations in NO₂ concentrations across the study period. Urban areas consistently show higher concentrations compared to rural regions, with notable decreases during 2020 due to COVID-19 mobility restrictions.</p>
+										
+										<!-- Placeholder for chart -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>NO₂ Annual Average Time Series Chart</strong><br />
+											<em>Interactive chart showing yearly trends for different land cover classes</em></p>
+										</div>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>2022 Annual Average Difference</h3>
+										<p>The 2022 Annual Average Difference from the 2017-2021 mean shows spatial patterns of concentration changes. Positive values indicate higher pollution than the 5-year average, while negative values suggest improvement or temporary reductions.</p>
+										
+										<!-- Placeholder for map -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>NO₂ AAD Map 2022</strong><br />
+											<em>Spatial visualization of concentration anomalies</em></p>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<!-- Land Cover Correlation -->
+							<section>
+								<h2>Land Cover Correlation</h2>
+								<p>The relationship between NO₂ concentrations and land cover types reveals important insights into pollution sources and spatial distribution patterns. Urban and industrial areas show consistently higher concentrations compared to natural and agricultural lands.</p>
+								
+								<div class="row">
+									<div class="col-8 col-12-medium">
+										<!-- Placeholder for correlation chart -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>NO₂ Concentration by Land Cover Class</strong><br />
+											<em>Bar chart showing min/max concentrations for different IPCC land cover categories (2013-2022)</em></p>
+										</div>
+									</div>
+									<div class="col-4 col-12-medium">
+										<h3>Key Findings</h3>
+										<ul>
+											<li><strong>Settlement:</strong> Highest concentrations (urban emissions)</li>
+											<li><strong>Cropland:</strong> Moderate levels (agricultural machinery)</li>
+											<li><strong>Grassland:</strong> Lower concentrations</li>
+											<li><strong>Forest:</strong> Lowest levels (natural absorption)</li>
+											<li><strong>Wetland:</strong> Variable depending on location</li>
+											<li><strong>Other lands:</strong> Site-specific patterns</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Population Exposure -->
+							<section>
+								<h2>Population Exposure Assessment</h2>
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Bivariate Analysis</h3>
+										<p>The bivariate map combines NO₂ concentration levels with population density to identify areas of highest concern. This analysis helps prioritize intervention strategies and assess public health risks.</p>
+										
+										<!-- Placeholder for bivariate map -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>NO₂ vs Population Bivariate Map</strong><br />
+											<em>5x5 color matrix showing pollution-population relationships</em></p>
+										</div>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Exposure Distribution</h3>
+										<p>The pie chart shows the percentage of population exposed to different NO₂ concentration categories, providing insights into public health impacts across the study area.</p>
+										
+										<!-- Placeholder for pie chart -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>Population Exposure Pie Chart</strong><br />
+											<em>Distribution of population across NO₂ concentration classes</em></p>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<!-- Seasonal Patterns -->
+							<section>
+								<h2>Seasonal Variations</h2>
+								<p>NO₂ concentrations exhibit distinct seasonal patterns influenced by meteorological conditions, emission sources, and atmospheric chemistry. Winter months typically show higher concentrations due to increased heating demands and reduced atmospheric mixing.</p>
+								
+								<div class="row">
+									<div class="col-3 col-6-medium col-12-small">
+										<h4>Winter (DJF)</h4>
+										<p>Highest concentrations due to heating emissions and stable atmospheric conditions that limit pollutant dispersion.</p>
+									</div>
+									<div class="col-3 col-6-medium col-12-small">
+										<h4>Spring (MAM)</h4>
+										<p>Moderate levels as heating demands decrease and atmospheric mixing increases with rising temperatures.</p>
+									</div>
+									<div class="col-3 col-6-medium col-12-small">
+										<h4>Summer (JJA)</h4>
+										<p>Generally lower concentrations due to enhanced atmospheric mixing and photochemical conversion to other species.</p>
+									</div>
+									<div class="col-3 col-6-medium col-12-small">
+										<h4>Autumn (SON)</h4>
+										<p>Increasing concentrations as heating season begins and atmospheric stability returns.</p>
+									</div>
+								</div>
+							</section>
+
+							<!-- Policy Implications -->
+							<section>
+								<h2>Policy Implications and Recommendations</h2>
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Current Status</h3>
+										<ul>
+											<li>Areas exceeding EU annual limit values (40 μg/m³)</li>
+											<li>Widespread exceedance of WHO guidelines (10 μg/m³)</li>
+											<li>Urban hotspots requiring immediate attention</li>
+											<li>Population exposure patterns by administrative regions</li>
+										</ul>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Recommendations</h3>
+										<ul>
+											<li>Enhanced monitoring in high-concentration areas</li>
+											<li>Traffic emission control measures in urban centers</li>
+											<li>Promotion of clean transportation alternatives</li>
+											<li>Industrial emission reduction strategies</li>
+											<li>Green infrastructure development</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Download Data -->
+							<section>
+								<h2>Data Downloads</h2>
+								<p>Access the processed NO₂ datasets and analysis results:</p>
+								<ul class="actions">
+									<li><a href="#" class="button">Download NO₂ Concentration Maps</a></li>
+									<li><a href="#" class="button">Download Bivariate Analysis</a></li>
+									<li><a href="#" class="button">Download Time Series Data</a></li>
+									<li><a href="#" class="button">Download Population Exposure</a></li>
+								</ul>
+							</section>
+
+							<!-- Navigation -->
+							<section>
+								<ul class="actions fit">
+									<li><a href="index.html" class="button">← Back to Home</a></li>
+									<li><a href="pm25.html" class="button primary">Next: PM2.5 Analysis →</a></li>
+								</ul>
+							</section>
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2025 GIS Lab Project. All rights reserved.</li>
+						<li>Template: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>Data: <a href="https://atmosphere.copernicus.eu/">Copernicus CAMS</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
