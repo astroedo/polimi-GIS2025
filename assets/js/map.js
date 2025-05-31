@@ -21,48 +21,121 @@ let osm = new Tile({
 });
 
 // ------- layers -------
-// Colombia Administrative Boundaries
-let colombiaBoundary = new Image({
-    title: "Colombia Administrative level 0",
+// step 1
+let Germany_no2_dec2022 = new Image({
+    title: "NO2 in Germany - December 2022",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm0' }
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_CAMS_no2_2022_12' }
     }),
-    visible: false
+    visible: true
+});
+//
+let Germany_pm2p5_dec2022 = new Image({
+    title: "PM2.5 in Germany - December 2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_CAMS_pm2p5_2022_12' }
+    }),
+    visible: true
+});
+ let Germany_pm10_dec2022 = new Image({
+    title: "PM10 in Germany - December 2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_CAMS_pm10_2022_12' }
+    }),
+    visible: true
 });
 
-// Colombia Administrative level 1
-var colombiaDepartments = new Image({
-    title: "Colombia Administrative level 1",
+// step 2
+var GermanyAvg_no2_2022 = new Image({
+    title: "Average NO2 in Germany - 2022",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm1' }
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_average_no2_2022' }
     }),
     opacity: 0.5,
-    visible: false
+    visible: true
+});
+var GermanyAvg_pm2p5_2022 = new Image({
+    title: "Average PM2.5 in Germany - 2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_average_pm2p5_2022' }
+    }),
+    opacity: 0.5,
+    visible: true
+});
+var GermanyAvg_pm10_2022 = new Image({
+    title: "Average PM10 in Germany - 2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_average_pm10_2022' }
+    }),
+    opacity: 0.5,
+    visible: true
 });
 
-// Colombia Roads
-var colombiaRoads = new Image({
-    title: "Colombia Roads",
+// step 3
+var Germany_no2_2020 = new Image({
+    title: "NO2 in Germany - 2020",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_roads' }
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_concentration_map_2020' }
     }),
-    visible: false
+    visible: true
+});
+var Germany_pm2p5_2020 = new Image({
+    title: "PM2.5 in Germany - 2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_pm2p5_concentration_map_2020' }
+    }),
+    visible: true
+});var Germany_pm10_2020 = new Image({
+    title: "PM10 in Germany - 2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_pm10_concentration_map_2020' }
+    }),
+    visible: true
 });
 
-// Colombia Rivers
-var colombiaRivers = new Image({
-    title: "Colombia Rivers",
-    type: "overlay",
+// step 4
+var Germany_no2_2017_2021_AAD_map_2022 = new Image({
+    title: "Germany NO2 - 2017-2021 AAD map 2022",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_rivers' }
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_2017_2021_AAD_map_2022' }
     }),
-    visible: false,
-    minResolution: 1000,
-    maxResolution: 5000
+    visible: true
+});
+var Germany_pm2p5_2017_2021_AAD_map_2022 = new Image({
+    title: "Germany PM2.5 - 2017-2021 AAD map 2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_pm2p5 _2017-2021_AAD_map _2022' }
+    }),
+    visible: true
+});
+var Germany_pm10_2017_2021_AAD_map_2022 = new Image({
+    title: "Germany PM10 - 2017-2021 AAD map 2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_pm10_2017_2021_AAD_map_2022' }
+    }),
+    visible: true
+});
+
+// step 5
+var Germany_LC_2022 = new Image({
+    title: "Germany Land Cover - 2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_LC_reclassified_2022' }
+    }),
+    visible: true
 });
 
 // Add the layer groups code here:
@@ -73,26 +146,35 @@ let basemapLayers = new Group({
 let overlayLayers = new Group({
     title: 'Overlay Layers',
     layers: [
-        colombiaBoundary,
-        colombiaDepartments,
-        colombiaRivers,
-        colombiaRoads
+        Germany_no2_dec2022,
+        Germany_pm2p5_dec2022,
+        Germany_pm10_dec2022,
+        GermanyAvg_no2_2022,
+        GermanyAvg_pm2p5_2022,
+        GermanyAvg_pm10_2022,
+        Germany_no2_2020,
+        Germany_pm2p5_2020,
+        Germany_pm10_2020,
+        Germany_no2_2017_2021_AAD_map_2022,
+        Germany_pm2p5_2017_2021_AAD_map_2022,
+        Germany_pm10_2017_2021_AAD_map_2022,
+        Germany_LC_2022
     ]
 });
 
 
 // Map Initialization
-let mapOrigin = fromLonLat([-74, 4.6]);
-let zoomLevel = 5;
+let mapOrigin = fromLonLat([10.5, 51.5]);
+let zoomLevel = 6;
 let map = new Map({
     target: document.getElementById('map'),
-    //layers: [basemapLayers, overlayLayers],
-    layers: [],
+    layers: [basemapLayers, overlayLayers],
+    //layers: [],
     view: new View({
         center: mapOrigin,
         zoom: zoomLevel
     }),
-    projection: 'EPSG:3857'
+    projection: 'EPSG:4326'
 });
 
 // Add the map controls here:
@@ -130,51 +212,67 @@ var stamenToner = new Tile({
 });
 basemapLayers.getLayers().extend([stamenWatercolor, stamenToner]);
 
-// Add the ESRI XYZ basemaps here:
-var esriTopoBasemap = new Tile({
-    title: 'ESRI Topographic',
-    type: 'base',
-    visible: false,
-    source: new XYZ({
-        attributions:
-            'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/' +
-            'rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
-        url:
-            'https://server.arcgisonline.com/ArcGIS/rest/services/' +
-            'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-    }),
-});
-var esriWorldImagery = new Tile({
-    title: 'ESRI World Imagery',
-    type: 'base',
-    visible: false,
-    source: new XYZ({
-        attributions:
-            'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/' +
-            'rest/services/World_Imagery/MapServer">ArcGIS</a>',
-        url:
-            'https://server.arcgisonline.com/ArcGIS/rest/services/' +
-            'World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    }),
-});
-basemapLayers.getLayers().extend([
-    esriTopoBasemap, esriWorldImagery
-]);
-
+// step 6
 // Add the WFS layer here:
 // First, the URL definition:
-var wfsUrl = "https://www.gis-geoserver.polimi.it/geoserver/gis/wfs?" + 
+var wfsUrl1 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
 "service=WFS&" + 
 "version=2.0.0&" +
 "request=GetFeature&" + 
-"typeName=gis:COL_water_areas&" + 
-"srsname=EPSG:3857&" + 
+"typeName=gisgeoserver_01:germany_no2_zonal_statistics_2013_2022&" + 
+"srsname=EPSG:4326&" + 
 "outputFormat=application/json";
 // Then the Source and Layer definitions:
-let wfsSource = new VectorSource({});
-let wfsLayer = new Vector({
-    title: "Colombia Water Areas",
-    source: wfsSource,
+let wfsSource1 = new VectorSource({});
+let wfsLayer1 = new Vector({
+    title: "Germany NO2 Zonal Statistics",
+    source: wfsSource1,
+    visible: true,
+    style: new Style({
+        fill: new Fill({
+            color: "#bde0fe"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#a2d2ff"
+        })
+    })
+});
+var wfsUrl2 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
+"service=WFS&" + 
+"version=2.0.0&" +
+"request=GetFeature&" + 
+"typeName=gisgeoserver_01:Germany_pm2p5_zonal_statistics_2013-2022&" + 
+"srsname=EPSG:4326&" + 
+"outputFormat=application/json";
+// Then the Source and Layer definitions:
+let wfsSource2 = new VectorSource({});
+let wfsLayer2 = new Vector({
+    title: "Germany PM2.5 Zonal Statistics",
+    source: wfsSource2,
+    visible: true,
+    style: new Style({
+        fill: new Fill({
+            color: "#bde0fe"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#a2d2ff"
+        })
+    })
+});
+var wfsUrl3 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
+"service=WFS&" + 
+"version=2.0.0&" +
+"request=GetFeature&" + 
+"typeName=gisgeoserver_01:Germany_pm10_zonal_statistics_2013-2022&" + 
+"srsname=EPSG:4326&" + 
+"outputFormat=application/json";
+// Then the Source and Layer definitions:
+let wfsSource3 = new VectorSource({});
+let wfsLayer3 = new Vector({
+    title: "Germany PM10 Zonal Statistics",
+    source: wfsSource3,
     visible: true,
     style: new Style({
         fill: new Fill({
@@ -188,27 +286,53 @@ let wfsLayer = new Vector({
 });
 
 // Finally the call to the WFS service:
-fetch(wfsUrl)
+fetch(wfsUrl1)
 .then((response) => {
     if (!response.ok) {
         throw new Error('Error ' + response.statusText);
     }
     response.json().then(data => {
-        wfsSource.addFeatures(
+        wfsSource1.addFeatures(
 	    new GeoJSON().readFeatures(data)
 	);
     })
 });
-overlayLayers.getLayers().extend([wfsLayer]);
+overlayLayers.getLayers().extend([wfsLayer1]);
+
+fetch(wfsUrl2)
+.then((response) => {
+    if (!response.ok) {
+        throw new Error('Error ' + response.statusText);
+    }
+    response.json().then(data => {
+        wfsSource2.addFeatures(
+	    new GeoJSON().readFeatures(data)
+	);
+    })
+});
+overlayLayers.getLayers().extend([wfsLayer2]);
+
+fetch(wfsUrl3)
+.then((response) => {
+    if (!response.ok) {
+        throw new Error('Error ' + response.statusText);
+    }
+    response.json().then(data => {
+        wfsSource3.addFeatures(
+	    new GeoJSON().readFeatures(data)
+	);
+    })
+});
+overlayLayers.getLayers().extend([wfsLayer3]);
 
 // Add the local static GeoJSON layer here:
-let staticGeoJSONSource = new VectorSource({
-    url: '../geojson/COL_adm2.geojson', 
+let staticGeoJSONSource1 = new VectorSource({
+    url: '../geojson/germany_no2_zonal_statistics_2013-2022.geojson', 
     format: new GeoJSON()
 });
-let staticGeoJSONLayer = new Vector({
-    title: "Colombia Municipalities",
-    source: staticGeoJSONSource,
+let staticGeoJSONLayer1 = new Vector({
+    title: "Germany no2 Zonal Statistics",
+    source: staticGeoJSONSource1,
     style: new Style({
         fill: new Fill({
             color: "rgba(255, 127, 80, 0.5)"
@@ -219,7 +343,217 @@ let staticGeoJSONLayer = new Vector({
         })
     })
 });
-overlayLayers.getLayers().push(staticGeoJSONLayer);
+overlayLayers.getLayers().push(staticGeoJSONLayer1);
+
+let staticGeoJSONSource2 = new VectorSource({
+    url: '../geojson/Germany_pm2p5_zonal_statistics_2013-2022.geojson', 
+    format: new GeoJSON()
+});
+
+let staticGeoJSONLayer2 = new Vector({
+    title: "Germany pm2.5 Zonal Statistics",
+    source: staticGeoJSONSource2,
+    style: new Style({
+        fill: new Fill({
+            color: "rgba(255, 127, 80, 0.5)"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#ff7f50"
+        })
+    })
+});
+overlayLayers.getLayers().push(staticGeoJSONLayer2);
+
+let staticGeoJSONSource3 = new VectorSource({
+    url: '../geojson/Germany_pm10_zonal_statistics_2013-2022.geojson', 
+    format: new GeoJSON()
+});
+let staticGeoJSONLayer3 = new Vector({
+    title: "Germany pm10 Zonal Statistics",
+    source: staticGeoJSONSource3,
+    style: new Style({
+        fill: new Fill({
+            color: "rgba(255, 127, 80, 0.5)"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#ff7f50"
+        })
+    })
+});
+overlayLayers.getLayers().push(staticGeoJSONLayer3);
+
+
+// step 7
+var wfsUrl4 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
+"service=WFS&" + 
+"version=2.0.0&" +
+"request=GetFeature&" + 
+"typeName=gisgeoserver_01:GERMANY_no2_2020_bivariate&" + 
+"srsname=EPSG:4326&" + 
+"outputFormat=application/json";
+// Then the Source and Layer definitions:
+let wfsSource4 = new VectorSource({});
+let wfsLayer4 = new Vector({
+    title: "Germany NO2 bivariate map",
+    source: wfsSource4,
+    visible: true,
+    style: new Style({
+        fill: new Fill({
+            color: "#bde0fe"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#a2d2ff"
+        })
+    })
+});
+var wfsUrl5 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
+"service=WFS&" + 
+"version=2.0.0&" +
+"request=GetFeature&" + 
+"typeName=gisgeoserver_01:Germany_pm2p5_2020_bivariate&" + 
+"srsname=EPSG:4326&" + 
+"outputFormat=application/json";
+// Then the Source and Layer definitions:
+let wfsSource5 = new VectorSource({});
+let wfsLayer5 = new Vector({
+    title: "Germany PM2.5 bivariate map",
+    source: wfsSource5,
+    visible: true,
+    style: new Style({
+        fill: new Fill({
+            color: "#bde0fe"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#a2d2ff"
+        })
+    })
+});
+var wfsUrl6 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
+"service=WFS&" + 
+"version=2.0.0&" +
+"request=GetFeature&" + 
+"typeName=gisgeoserver_01:Germany_pm10_2020_bivariate&" + 
+"srsname=EPSG:4326&" + 
+"outputFormat=application/json";
+// Then the Source and Layer definitions:
+let wfsSource6 = new VectorSource({});
+let wfsLayer6 = new Vector({
+    title: "Germany PM10 bivariate map",
+    source: wfsSource6,
+    visible: true,
+    style: new Style({
+        fill: new Fill({
+            color: "#bde0fe"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#a2d2ff"
+        })
+    })
+});
+
+// Finally the call to the WFS service:
+fetch(wfsUrl4)
+.then((response) => {
+    if (!response.ok) {
+        throw new Error('Error ' + response.statusText);
+    }
+    response.json().then(data => {
+        wfsSource4.addFeatures(
+	    new GeoJSON().readFeatures(data)
+	);
+    })
+});
+overlayLayers.getLayers().extend([wfsLayer4]);
+
+fetch(wfsUrl5)
+.then((response) => {
+    if (!response.ok) {
+        throw new Error('Error ' + response.statusText);
+    }
+    response.json().then(data => {
+        wfsSource5.addFeatures(
+	    new GeoJSON().readFeatures(data)
+	);
+    })
+});
+overlayLayers.getLayers().extend([wfsLayer5]);
+
+fetch(wfsUrl6)
+.then((response) => {
+    if (!response.ok) {
+        throw new Error('Error ' + response.statusText);
+    }
+    response.json().then(data => {
+        wfsSource6.addFeatures(
+	    new GeoJSON().readFeatures(data)
+	);
+    })
+});
+overlayLayers.getLayers().extend([wfsLayer6]);
+
+// Add the local static GeoJSON layer here:
+let staticGeoJSONSource4 = new VectorSource({
+    url: '../geojson/GERMANY_no2_2020_bivariate.geojson', 
+    format: new GeoJSON()
+});
+let staticGeoJSONLayer4 = new Vector({
+    title: "Germany no2 bivariate map",
+    source: staticGeoJSONSource4,
+    style: new Style({
+        fill: new Fill({
+            color: "rgba(255, 127, 80, 0.5)"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#ff7f50"
+        })
+    })
+});
+overlayLayers.getLayers().push(staticGeoJSONLayer4);
+
+let staticGeoJSONSource5 = new VectorSource({
+    url: '../geojson/Germany_pm2p5_2020_bivariate.geojson', 
+    format: new GeoJSON()
+});
+let staticGeoJSONLayer5 = new Vector({
+    title: "Germany pm2.5 bivariate map",
+    source: staticGeoJSONSource5,
+    style: new Style({
+        fill: new Fill({
+            color: "rgba(255, 127, 80, 0.5)"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#ff7f50"
+        })
+    })
+});
+overlayLayers.getLayers().push(staticGeoJSONLayer5);
+
+let staticGeoJSONSource6 = new VectorSource({
+    url: '../geojson/Germany_pm10_2020_bivariate.geojson', 
+    format: new GeoJSON()
+});
+let staticGeoJSONLayer6 = new Vector({
+    title: "Germany pm10 bivariate map",
+    source: staticGeoJSONSource6,
+    style: new Style({
+        fill: new Fill({
+            color: "rgba(255, 127, 80, 0.5)"
+        }),
+        stroke: new Stroke({
+            width: 2,
+            color: "#ff7f50"
+        })
+    })
+});
+overlayLayers.getLayers().push(staticGeoJSONLayer6);
+
 
 // Add the popup code here:
 var container = document.getElementById('popup');
@@ -243,7 +577,13 @@ map.on('singleclick', function (event) {
     var feature = map.forEachFeatureAtPixel(
         event.pixel, 
         function (feature, layer) {
-            if(layer == staticGeoJSONLayer){
+            if(layer == staticGeoJSONLayer1 ||
+                layer == staticGeoJSONLayer2 ||
+                layer == staticGeoJSONLayer3 ||
+                layer == staticGeoJSONLayer4 ||
+                layer == staticGeoJSONLayer5 ||
+                layer == staticGeoJSONLayer6 
+            ){
                 return feature;
             }
         }
@@ -256,9 +596,8 @@ map.on('singleclick', function (event) {
 
         content.innerHTML =
             '<h5>Administrative Level 2</h5><br>' +
-            '<span>' +
-            feature.get('name_2') + ', ' +
-            feature.get('name_1')
+            '<span>' 
+            + JSON.stringify(feature.getProperties()) +
             '</span>';
     }
 });

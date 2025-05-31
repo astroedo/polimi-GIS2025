@@ -1,211 +1,46 @@
-<!DOCTYPE HTML>
-<!--
-	WebGIS - Air Quality Mapping Project
-	GIS Lab Project 2024/25
--->
-<html>
-	<head>
-		<title>Interactive WebGIS - Air Quality Mapping</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@8.2.0/ol.css" type="text/css">
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<style>
-			body, html {
-				margin: 0;
-				padding: 0;
-				height: 100%;
-				overflow: hidden;
-			}
-			#map {
-				width: 100vw;
-				height: 100vh;
-			}
-			.layer-selector {
-				position: absolute;
-				top: 10px;
-				left: 10px;
-				background: rgba(255, 255, 255, 0.9);
-				padding: 15px;
-				border-radius: 5px;
-				box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-				z-index: 1000;
-				font-family: Arial, sans-serif;
-			}
-			.layer-selector h3 {
-				margin: 0 0 10px 0;
-				font-size: 16px;
-				color: #333;
-			}
-			.layer-control {
-				margin: 5px 0;
-			}
-			.layer-control input[type="radio"] {
-				margin-right: 8px;
-			}
-			.layer-control label {
-				font-size: 14px;
-				color: #555;
-				cursor: pointer;
-			}
-			.coordinates {
-				position: absolute;
-				bottom: 10px;
-				right: 10px;
-				background: rgba(0, 0, 0, 0.7);
-				color: white;
-				padding: 8px 12px;
-				border-radius: 3px;
-				font-family: monospace;
-				font-size: 12px;
-				z-index: 1000;
-			}
-			.home-button {
-				position: absolute;
-				top: 10px;
-				right: 10px;
-				background: #5e42a6;
-				color: white;
-				padding: 10px 15px;
-				border: none;
-				border-radius: 5px;
-				text-decoration: none;
-				font-weight: bold;
-				z-index: 1000;
-				box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-			}
-			.home-button:hover {
-				background: #4a3584;
-			}
-		</style>
-	</head>
-	<body>
+<!doctype html>
+<html lang="en">
 
-		<!-- Layer Selector -->
-		<div class="layer-selector">
-			<h3>Germany Air Quality 2020</h3>
-			<div class="layer-control">
-				<input type="radio" id="no2-layer" name="pollutant" value="no2" checked>
-				<label for="no2-layer">NO₂ Concentration</label>
-			</div>
-			<div class="layer-control">
-				<input type="radio" id="pm25-layer" name="pollutant" value="pm25">
-				<label for="pm25-layer">PM2.5 Concentration</label>
-			</div>
-			<div class="layer-control">
-				<input type="radio" id="pm10-layer" name="pollutant" value="pm10">
-				<label for="pm10-layer">PM10 Concentration</label>
-			</div>
-		</div>
+<head>
+    <base href="">
+    <title>Air Quality Map</title>
 
-		<!-- Home Button -->
-		<a href="index.html" class="home-button">← Home</a>
+    <meta charset="utf-8">
 
-		<!-- Coordinates Display -->
-		<div class="coordinates" id="coordinates">
-			Lat: 0.000000, Lon: 0.000000
-		</div>
+    <!--StyleSheets-->
+    <!-- <link rel="stylesheet" href="../assets/libraries/ol-v6.14.1-dist/ol.css"> -->
+    <link rel="stylesheet" href="../node_modules/node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-		<!-- Full Screen Map -->
-		<div id="map"></div>
+    <!-- Static files are imported from public folder -->
+    <link rel="stylesheet" href="../assets/css/custom-styles_map.css">
 
-		<!-- Scripts -->
-		<script src="https://cdn.jsdelivr.net/npm/ol@8.2.0/dist/ol.js"></script>
-		
-		<script>
-			// WebGIS Functionality
-			let map, currentLayer, coordinatesElement;
-			
-			// Initialize map
-			function initMap() {
-				map = new ol.Map({
-					target: 'map',
-					layers: [
-						new ol.layer.Tile({
-							source: new ol.source.OSM()
-						})
-					],
-					view: new ol.View({
-						center: ol.proj.fromLonLat([10.4515, 51.1657]), // Centered on Germany
-						zoom: 6
-					})
-				});
-				
-				// Add coordinates display
-				coordinatesElement = document.getElementById('coordinates');
-				
-				// Update coordinates on mouse move
-				map.on('pointermove', function(event) {
-					const coordinate = ol.proj.toLonLat(event.coordinate);
-					const lon = coordinate[0].toFixed(6);
-					const lat = coordinate[1].toFixed(6);
-					coordinatesElement.innerHTML = `Lat: ${lat}, Lon: ${lon}`;
-				});
-				
-				// Add default NO2 layer
-				addPollutantLayer('no2');
-			}
-			
-			// Add pollutant layer using images
-			function addPollutantLayer(pollutant) {
-				// Remove existing pollutant layer
-				if (currentLayer) {
-					map.removeLayer(currentLayer);
-				}
-				
-				// Map pollutant names to your exact file names
-				let fileNames = {
-					'no2': 'GERMANY_average_no2_2022.tif',
-					'pm25': 'Germany_average_pm25_2022.tif', 
-					'pm10': 'GERMANY_average_pm10_2022.tif'
-				};
-				
-				let imagePath = `data/${fileNames[pollutant]}`;
-				console.log('Loading image:', imagePath);
-				
-				// Germany extent coordinates [west, south, east, north] in WGS84
-				let extent = [5.98865807458, 47.3024876979, 15.0169958839, 54.983104153];
-				
-				// Test if image exists first
-				let img = new Image();
-				img.onload = function() {
-					console.log('Successfully loaded:', imagePath);
-					
-					currentLayer = new ol.layer.Image({
-						source: new ol.source.ImageStatic({
-							url: imagePath,
-							projection: 'EPSG:4326',
-							imageExtent: extent
-						}),
-						opacity: 0.8
-					});
-					
-					map.addLayer(currentLayer);
-				};
-				
-				img.onerror = function() {
-					console.error('Failed to load image:', imagePath);
-					alert(`Failed to load: ${imagePath}\nPlease check the file exists and is accessible.`);
-				};
-				
-				img.src = imagePath;
-			}
-			
-			// Event listeners
-			document.addEventListener('DOMContentLoaded', function() {
-				initMap();
-				
-				// Pollutant layer controls
-				document.querySelectorAll('input[name="pollutant"]').forEach(radio => {
-					radio.addEventListener('change', function() {
-						if (this.checked) {
-							addPollutantLayer(this.value);
-						}
-					});
-				});
-			});
-		</script>
+    <!-- Modules are imported normally -->
+    <script type="module" src="../assets/js/map.js"></script>
+</head>
 
-	</body>
+<body>
+    <div class="w-100 vh-100">
+        <div class="floating-button">
+            <a href="../index.html" class="btn btn-success">Go Home</a>
+        </div>
+        <div id="map"></div>
+
+        <!--Add here the popup HTML-- the style is in custom-styles.css--> 
+        <div id="popup" class="ol-popup">
+            <a href="#" id="popup-closer" class="ol-popup-closer">
+                &times;
+            </a>
+            <div id="popup-content"></div>
+        </div>
+
+        <!--Add here the legend HTML-->
+        <div id="legend" class="legend-container">
+            <span class="legend-title">Legend For map</span>
+            <div id="legend-content" class="legend-content">
+            </div>
+        </div>
+
+    </div>
+</body>
+
 </html>
