@@ -193,25 +193,6 @@ map.addControl(
 var layerSwitcher = new LayerSwitcher({});
 map.addControl(layerSwitcher);
 
-// Add the Stadia Basemaps here:
-var stamenWatercolor = new Tile({
-    title: 'Stamen Watercolor',
-    type: 'base',
-    visible: false,
-    source: new StadiaMaps({
-        layer: 'stamen_watercolor'
-    })
-});
-var stamenToner = new Tile({
-    title: 'Stamen Toner',
-    type: 'base',
-    visible: false,
-    source: new StadiaMaps({
-        layer: 'stamen_toner'
-    })
-});
-basemapLayers.getLayers().extend([stamenWatercolor, stamenToner]);
-
 // step 6
 // Add the WFS layer here:
 // First, the URL definition:
@@ -238,6 +219,7 @@ let wfsLayer1 = new Vector({
         })
     })
 });
+
 var wfsUrl2 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
 "service=WFS&" + 
 "version=2.0.0&" +
@@ -261,6 +243,7 @@ let wfsLayer2 = new Vector({
         })
     })
 });
+
 var wfsUrl3 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
 "service=WFS&" + 
 "version=2.0.0&" +
@@ -325,66 +308,6 @@ fetch(wfsUrl3)
 });
 overlayLayers.getLayers().extend([wfsLayer3]);
 
-// Add the local static GeoJSON layer here:
-let staticGeoJSONSource1 = new VectorSource({
-    url: '../geojson/germany_no2_zonal_statistics_2013-2022.geojson', 
-    format: new GeoJSON()
-});
-let staticGeoJSONLayer1 = new Vector({
-    title: "Germany no2 Zonal Statistics",
-    source: staticGeoJSONSource1,
-    style: new Style({
-        fill: new Fill({
-            color: "rgba(255, 127, 80, 0.5)"
-        }),
-        stroke: new Stroke({
-            width: 2,
-            color: "#ff7f50"
-        })
-    })
-});
-overlayLayers.getLayers().push(staticGeoJSONLayer1);
-
-let staticGeoJSONSource2 = new VectorSource({
-    url: '../geojson/Germany_pm2p5_zonal_statistics_2013-2022.geojson', 
-    format: new GeoJSON()
-});
-
-let staticGeoJSONLayer2 = new Vector({
-    title: "Germany pm2.5 Zonal Statistics",
-    source: staticGeoJSONSource2,
-    style: new Style({
-        fill: new Fill({
-            color: "rgba(255, 127, 80, 0.5)"
-        }),
-        stroke: new Stroke({
-            width: 2,
-            color: "#ff7f50"
-        })
-    })
-});
-overlayLayers.getLayers().push(staticGeoJSONLayer2);
-
-let staticGeoJSONSource3 = new VectorSource({
-    url: '../geojson/Germany_pm10_zonal_statistics_2013-2022.geojson', 
-    format: new GeoJSON()
-});
-let staticGeoJSONLayer3 = new Vector({
-    title: "Germany pm10 Zonal Statistics",
-    source: staticGeoJSONSource3,
-    style: new Style({
-        fill: new Fill({
-            color: "rgba(255, 127, 80, 0.5)"
-        }),
-        stroke: new Stroke({
-            width: 2,
-            color: "#ff7f50"
-        })
-    })
-});
-overlayLayers.getLayers().push(staticGeoJSONLayer3);
-
-
 // step 7
 var wfsUrl4 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
 "service=WFS&" + 
@@ -409,6 +332,7 @@ let wfsLayer4 = new Vector({
         })
     })
 });
+
 var wfsUrl5 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
 "service=WFS&" + 
 "version=2.0.0&" +
@@ -432,6 +356,7 @@ let wfsLayer5 = new Vector({
         })
     })
 });
+
 var wfsUrl6 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
 "service=WFS&" + 
 "version=2.0.0&" +
@@ -496,65 +421,6 @@ fetch(wfsUrl6)
 });
 overlayLayers.getLayers().extend([wfsLayer6]);
 
-// Add the local static GeoJSON layer here:
-let staticGeoJSONSource4 = new VectorSource({
-    url: '../geojson/GERMANY_no2_2020_bivariate.geojson', 
-    format: new GeoJSON()
-});
-let staticGeoJSONLayer4 = new Vector({
-    title: "Germany no2 bivariate map",
-    source: staticGeoJSONSource4,
-    style: new Style({
-        fill: new Fill({
-            color: "rgba(255, 127, 80, 0.5)"
-        }),
-        stroke: new Stroke({
-            width: 2,
-            color: "#ff7f50"
-        })
-    })
-});
-overlayLayers.getLayers().push(staticGeoJSONLayer4);
-
-let staticGeoJSONSource5 = new VectorSource({
-    url: '../geojson/Germany_pm2p5_2020_bivariate.geojson', 
-    format: new GeoJSON()
-});
-let staticGeoJSONLayer5 = new Vector({
-    title: "Germany pm2.5 bivariate map",
-    source: staticGeoJSONSource5,
-    style: new Style({
-        fill: new Fill({
-            color: "rgba(255, 127, 80, 0.5)"
-        }),
-        stroke: new Stroke({
-            width: 2,
-            color: "#ff7f50"
-        })
-    })
-});
-overlayLayers.getLayers().push(staticGeoJSONLayer5);
-
-let staticGeoJSONSource6 = new VectorSource({
-    url: '../geojson/Germany_pm10_2020_bivariate.geojson', 
-    format: new GeoJSON()
-});
-let staticGeoJSONLayer6 = new Vector({
-    title: "Germany pm10 bivariate map",
-    source: staticGeoJSONSource6,
-    style: new Style({
-        fill: new Fill({
-            color: "rgba(255, 127, 80, 0.5)"
-        }),
-        stroke: new Stroke({
-            width: 2,
-            color: "#ff7f50"
-        })
-    })
-});
-overlayLayers.getLayers().push(staticGeoJSONLayer6);
-
-
 // Add the popup code here:
 var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
@@ -595,7 +461,7 @@ map.on('singleclick', function (event) {
         popup.setPosition(coord);
 
         content.innerHTML =
-            '<h5>Administrative Level 2</h5><br>' +
+            '<h5####h5><br>' +
             '<span>' 
             + JSON.stringify(feature.getProperties()) +
             '</span>';

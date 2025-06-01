@@ -1,0 +1,26 @@
+{
+  "name": "polimi-gis2025",
+  "version": "1.0.0",
+  "description": "Air pollution is the presence of harmful substances in the air, including gases and particulates, that can negatively\r impact human health and the environment. The main sources of air pollution include industrial emissions, vehicle\r exhaust, burning of fossil fuels, agricultural activities, and natural events like wildfires and volcanic eruptions. These\r pollutants contribute to climate change, respiratory diseases, and environmental degradation.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astroedo/polimi-GIS2025.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/astroedo/polimi-GIS2025/issues"
+  },
+  "homepage": "https://github.com/astroedo/polimi-GIS2025#readme",
+  "dependencies": {
+    "ol": "^10.5.0",
+    "ol-layerswitcher": "^4.1.2",
+    "vite": "^6.3.5"
+  }
+}
