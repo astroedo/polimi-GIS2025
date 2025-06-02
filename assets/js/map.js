@@ -10,6 +10,7 @@ import { ScaleLine, FullScreen, MousePosition, } from 'ol/control';
 import LayerSwitcher from 'ol-layerswitcher';
 import { createStringXY } from 'ol/coordinate';
 import { Style, Fill, Stroke } from 'ol/style';
+import RBush from 'rbush';
 
 
 // OpenStreetMap base map
@@ -28,7 +29,7 @@ let Germany_no2_dec2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_CAMS_no2_2022_12' }
     }),
-    visible: true
+    visible: false
 });
 //
 let Germany_pm2p5_dec2022 = new Image({
@@ -37,7 +38,7 @@ let Germany_pm2p5_dec2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_CAMS_pm2p5_2022_12' }
     }),
-    visible: true
+    visible: false
 });
  let Germany_pm10_dec2022 = new Image({
     title: "PM10 in Germany - December 2022",
@@ -45,7 +46,7 @@ let Germany_pm2p5_dec2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:Germany_CAMS_pm10_2022_12' }
     }),
-    visible: true
+    visible: false
 });
 
 // step 2
@@ -56,7 +57,7 @@ var GermanyAvg_no2_2022 = new Image({
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_average_no2_2022' }
     }),
     opacity: 0.5,
-    visible: true
+    visible: false
 });
 var GermanyAvg_pm2p5_2022 = new Image({
     title: "Average PM2.5 in Germany - 2022",
@@ -65,7 +66,7 @@ var GermanyAvg_pm2p5_2022 = new Image({
         params: { 'LAYERS': 'gisgeoserver_01:Germany_average_pm2p5_2022' }
     }),
     opacity: 0.5,
-    visible: true
+    visible: false
 });
 var GermanyAvg_pm10_2022 = new Image({
     title: "Average PM10 in Germany - 2022",
@@ -74,7 +75,7 @@ var GermanyAvg_pm10_2022 = new Image({
         params: { 'LAYERS': 'gisgeoserver_01:Germany_average_pm10_2022' }
     }),
     opacity: 0.5,
-    visible: true
+    visible: false
 });
 
 // step 3
@@ -84,7 +85,7 @@ var Germany_no2_2020 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_concentration_map_2020' }
     }),
-    visible: true
+    visible: false
 });
 var Germany_pm2p5_2020 = new Image({
     title: "PM2.5 in Germany - 2020",
@@ -92,14 +93,14 @@ var Germany_pm2p5_2020 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:Germany_pm2p5_concentration_map_2020' }
     }),
-    visible: true
+    visible: false
 });var Germany_pm10_2020 = new Image({
     title: "PM10 in Germany - 2020",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:Germany_pm10_concentration_map_2020' }
     }),
-    visible: true
+    visible: false
 });
 
 // step 4
@@ -109,7 +110,7 @@ var Germany_no2_2017_2021_AAD_map_2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_2017_2021_AAD_map_2022' }
     }),
-    visible: true
+    visible: false
 });
 var Germany_pm2p5_2017_2021_AAD_map_2022 = new Image({
     title: "Germany PM2.5 - 2017-2021 AAD map 2022",
@@ -117,7 +118,7 @@ var Germany_pm2p5_2017_2021_AAD_map_2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:Germany_pm2p5 _2017-2021_AAD_map _2022' }
     }),
-    visible: true
+    visible: false
 });
 var Germany_pm10_2017_2021_AAD_map_2022 = new Image({
     title: "Germany PM10 - 2017-2021 AAD map 2022",
@@ -125,7 +126,7 @@ var Germany_pm10_2017_2021_AAD_map_2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:Germany_pm10_2017_2021_AAD_map_2022' }
     }),
-    visible: true
+    visible: false
 });
 
 // step 5
@@ -135,7 +136,7 @@ var Germany_LC_2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:Germany_LC_reclassified_2022' }
     }),
-    visible: true
+    visible: false
 });
 
 // Add the layer groups code here:
@@ -208,7 +209,7 @@ let wfsSource1 = new VectorSource({});
 let wfsLayer1 = new Vector({
     title: "Germany NO2 Zonal Statistics",
     source: wfsSource1,
-    visible: true,
+    visible: false,
     style: new Style({
         fill: new Fill({
             color: "#bde0fe"
@@ -232,7 +233,7 @@ let wfsSource2 = new VectorSource({});
 let wfsLayer2 = new Vector({
     title: "Germany PM2.5 Zonal Statistics",
     source: wfsSource2,
-    visible: true,
+    visible: false,
     style: new Style({
         fill: new Fill({
             color: "#bde0fe"
@@ -256,7 +257,7 @@ let wfsSource3 = new VectorSource({});
 let wfsLayer3 = new Vector({
     title: "Germany PM10 Zonal Statistics",
     source: wfsSource3,
-    visible: true,
+    visible: false,
     style: new Style({
         fill: new Fill({
             color: "#bde0fe"
@@ -321,7 +322,7 @@ let wfsSource4 = new VectorSource({});
 let wfsLayer4 = new Vector({
     title: "Germany NO2 bivariate map",
     source: wfsSource4,
-    visible: true,
+    visible: false,
     style: new Style({
         fill: new Fill({
             color: "#bde0fe"
@@ -345,7 +346,7 @@ let wfsSource5 = new VectorSource({});
 let wfsLayer5 = new Vector({
     title: "Germany PM2.5 bivariate map",
     source: wfsSource5,
-    visible: true,
+    visible: false,
     style: new Style({
         fill: new Fill({
             color: "#bde0fe"
@@ -369,7 +370,7 @@ let wfsSource6 = new VectorSource({});
 let wfsLayer6 = new Vector({
     title: "Germany PM10 bivariate map",
     source: wfsSource6,
-    visible: true,
+    visible: false,
     style: new Style({
         fill: new Fill({
             color: "#bde0fe"
