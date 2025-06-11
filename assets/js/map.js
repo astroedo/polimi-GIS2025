@@ -29,16 +29,16 @@ let Germany_no2_dec2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_CAMS_no2_2022_12' }
     }),
-    visible: false
+    visible: true
 });
 //
 let Germany_pm2p5_dec2022 = new Image({
     title: "PM2.5 in Germany - December 2022",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
-        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_CAMS_pm2p5_2022_12' }
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_CAMS_pm2p5_2022_12' }
     }),
-    visible: false
+    visible: true
 });
  let Germany_pm10_dec2022 = new Image({
     title: "PM10 in Germany - December 2022",
@@ -46,7 +46,7 @@ let Germany_pm2p5_dec2022 = new Image({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:Germany_CAMS_pm10_2022_12' }
     }),
-    visible: false
+    visible: true
 });
 
 // step 2
@@ -201,7 +201,7 @@ var wfsUrl1 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wf
 "service=WFS&" + 
 "version=2.0.0&" +
 "request=GetFeature&" + 
-"typeName=gisgeoserver_01:germany_no2_zonal_statistics_2013_2022&" + 
+"typeName=gisgeoserver_01:GERMANY_no2_zonal_statistics_2013_2022&" + 
 "srsname=EPSG:4326&" + 
 "outputFormat=application/json";
 // Then the Source and Layer definitions:
@@ -221,12 +221,12 @@ let wfsLayer1 = new Vector({
     })
 });
 
-var wfsUrl2 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
-"service=WFS&" + 
-"version=2.0.0&" +
-"request=GetFeature&" + 
-"typeName=gisgeoserver_01:Germany_pm2p5_zonal_statistics_2013-2022&" + 
-"srsname=EPSG:4326&" + 
+var wfsUrl2 = "https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wfs?"+
+"service=WFS&"+
+"version=2.0.0&"+
+"request=GetFeature&"+
+"typeName=gisgeoserver_01:3AGermany_pm2p5_zonal_statistics_2013-2022&"+
+"srs=EPSG:4326&"+
 "outputFormat=application/json";
 // Then the Source and Layer definitions:
 let wfsSource2 = new VectorSource({});
@@ -245,13 +245,7 @@ let wfsLayer2 = new Vector({
     })
 });
 
-var wfsUrl3 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
-"service=WFS&" + 
-"version=2.0.0&" +
-"request=GetFeature&" + 
-"typeName=gisgeoserver_01:Germany_pm10_zonal_statistics_2013-2022&" + 
-"srsname=EPSG:4326&" + 
-"outputFormat=application/json";
+var wfsUrl3 = "https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms?service=WMS&version=1.1.0&request=GetMap&layers=gisgeoserver_01%3AGermany_pm10_zonal_statistics_2013-2022&bbox=5.85555555555557%2C47.4%2C15.0138888888889%2C55.0&width=768&height=637&srs=EPSG%3A4326&styles=&format=text%2Fhtml%3B%20subtype%3Dopenlayers";
 // Then the Source and Layer definitions:
 let wfsSource3 = new VectorSource({});
 let wfsLayer3 = new Vector({
@@ -308,11 +302,10 @@ fetch(wfsUrl3)
     })
 });
 overlayLayers.getLayers().extend([wfsLayer3]);
-
 // step 7
 var wfsUrl4 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
 "service=WFS&" + 
-"version=2.0.0&" +
+"version=1.1.0&" +
 "request=GetFeature&" + 
 "typeName=gisgeoserver_01:GERMANY_no2_2020_bivariate&" + 
 "srsname=EPSG:4326&" + 
@@ -334,19 +327,13 @@ let wfsLayer4 = new Vector({
     })
 });
 
-var wfsUrl5 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
-"service=WFS&" + 
-"version=2.0.0&" +
-"request=GetFeature&" + 
-"typeName=gisgeoserver_01:Germany_pm2p5_2020_bivariate&" + 
-"srsname=EPSG:4326&" + 
-"outputFormat=application/json";
+var wfsUrl5 = "https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms?service=WMS&version=1.1.0&request=GetMap&layers=gisgeoserver_01%3AGermany_pm2p5_2020_bivariate&bbox=5.866777896881104%2C47.27008438110352%2C15.04050159454346%2C55.05565643310547&width=768&height=651&srs=EPSG%3A4326&styles=&format=application/openlayers";
 // Then the Source and Layer definitions:
 let wfsSource5 = new VectorSource({});
 let wfsLayer5 = new Vector({
     title: "Germany PM2.5 bivariate map",
     source: wfsSource5,
-    visible: false,
+    visible: true,
     style: new Style({
         fill: new Fill({
             color: "#bde0fe"
@@ -358,13 +345,14 @@ let wfsLayer5 = new Vector({
     })
 });
 
-var wfsUrl6 = "https://www.gis-geoserver.polimi.it/geoserver/geoserver_01/gis/wfs?" + 
-"service=WFS&" + 
-"version=2.0.0&" +
-"request=GetFeature&" + 
-"typeName=gisgeoserver_01:Germany_pm10_2020_bivariate&" + 
-"srsname=EPSG:4326&" + 
-"outputFormat=application/json";
+var wfsUrl6 = "https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms?" +
+"service=WMS&" +
+"version=1.1.0&" +
+"request=GetMap&" +
+"layers=gisgeoserver_01%3AGermany_pm10_2020_bivariate&" +
+"bbox=5.866778000404565%2C47.27009038066671%2C15.04050000047482%2C55.05564880434894&" +
+"width=768&height=651&srs=EPSG%3A4326&styles=&format=application/openlayers"
+
 // Then the Source and Layer definitions:
 let wfsSource6 = new VectorSource({});
 let wfsLayer6 = new Vector({
