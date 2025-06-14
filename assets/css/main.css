@@ -99,7 +99,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #312450;
+		background: #03254c;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -198,10 +198,10 @@ input, select, textarea {
 		}
 
 			h1.major:after {
-				background-image: -moz-linear-gradient(to right, #5e42a6, #ff88a6);
-				background-image: -webkit-linear-gradient(to right, #5e42a6, #ff88a6);
-				background-image: -ms-linear-gradient(to right, #5e42a6, #ff88a6);
-				background-image: linear-gradient(to right, #5e42a6, #ff88a6);
+				background-image: -moz-linear-gradient(to right, #003b6b, #d8f9ff);
+				background-image: -webkit-linear-gradient(to right, #003b6b, #d8f9ff);
+				background-image: -ms-linear-gradient(to right, #003b6b, #d8f9ff);
+				background-image: linear-gradient(to right, #003b6b, #d8f9ff);
 				-moz-transition: max-width 0.2s ease;
 				-webkit-transition: max-width 0.2s ease;
 				-ms-transition: max-width 0.2s ease;
@@ -2445,7 +2445,7 @@ input, select, textarea {
 		input[type="radio"]:checked + label:before {
 			background: #ffffff;
 			border-color: #ffffff;
-			color: #ff88a6;
+			color: #d8f9ff;
 			content: '\f00c';
 		}
 
@@ -2526,7 +2526,7 @@ input, select, textarea {
 			display: block;
 			background: #ffffff;
 			border-radius: 100%;
-			color: #312450;
+			color: #03254c;
 			text-align: center;
 			line-height: 2.5em;
 			margin: 0 0 1.3em 0;
@@ -2537,27 +2537,27 @@ input, select, textarea {
 			}
 
 				.wrapper.style1 .icon.major:before {
-					color: #5e42a6;
+					color: #003a6b;
 				}
 
 				.wrapper.style1-alt .icon.major:before {
-					color: #493382;
+					color: #003a6b;
 				}
 
 				.wrapper.style2 .icon.major:before {
-					color: #5052b5;
+					color: #1B5886;
 				}
 
 				.wrapper.style2-alt .icon.major:before {
-					color: #3e4094;
+					color: #1B5886;
 				}
 
 				.wrapper.style3 .icon.major:before {
-					color: #b74e91;
+					color: #6EB1D6;
 				}
 
 				.wrapper.style3-alt .icon.major:before {
-					color: #953d75;
+					color: #6EB1D6;
 				}
 
 /* Image */
@@ -3023,7 +3023,7 @@ input, select, textarea {
 				-webkit-transition: opacity 1s ease;
 				-ms-transition: opacity 1s ease;
 				transition: opacity 1s ease;
-				background: rgba(49, 36, 80, 0.9);
+				background: #03254c;
 				content: '';
 				display: block;
 				height: 100%;
@@ -3237,31 +3237,31 @@ input, select, textarea {
 			}
 
 		.wrapper.alt {
-			background-color: #261c3e;
+			background-color: #003a6b;
 		}
 
 		.wrapper.style1 {
-			background-color: #2a6682;
+			background-color: #003a6b;
 		}
 
 		.wrapper.style1-alt {
-			background-color: #493382;
+			background-color: #003a6b;
 		}
 
 		.wrapper.style2 {
-			background-color: #32788f;
+			background-color: #1B5886;
 		}
 
 		.wrapper.style2-alt {
-			background-color: #3e4094;
+			background-color: #003a6b;
 		}
 
 		.wrapper.style3 {
-			background-color: #cf8fbb;
+			background-color: #6EB1D6;
 		}
 
 		.wrapper.style3-alt {
-			background-color: #953d75;
+			background-color: #6EB1D6;
 		}
 
 		.wrapper.fullscreen {
@@ -3371,7 +3371,7 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		background-color: #5e42a6;
+		background-color: #003a6b;
 		cursor: default;
 		padding: 1.75em 2em;
 	}
@@ -3525,7 +3525,7 @@ input, select, textarea {
 
 	#sidebar {
 		padding: 2.5em 2.5em 0.5em 2.5em ;
-		background: #312450;
+		background: #03254c;
 		cursor: default;
 		height: 100vh;
 		left: 0;
@@ -3762,14 +3762,14 @@ input, select, textarea {
 			}
 
 			#sidebar nav a:before {
-				background: #3c2c62;
+				background: rgba(32, 40, 106, 0.759);
 			}
 
 			#sidebar nav a:after {
-				background-image: -moz-linear-gradient(to right, #5e42a6, #ff88a6);
-				background-image: -webkit-linear-gradient(to right, #5e42a6, #ff88a6);
-				background-image: -ms-linear-gradient(to right, #5e42a6, #ff88a6);
-				background-image: linear-gradient(to right, #5e42a6, #ff88a6);
+				background-image: -moz-linear-gradient(to right, #003b6b, #d8f9ff);
+				background-image: -webkit-linear-gradient(to right, #003a6b, #d8f9ff);
+				background-image: -ms-linear-gradient(to right, #003a6b, #d8f9ff);
+				background-image: linear-gradient(to right, #003a6b, #d8f9ff);
 				-moz-transition: max-width 0.2s ease;
 				-webkit-transition: max-width 0.2s ease;
 				-ms-transition: max-width 0.2s ease;
@@ -3858,7 +3858,7 @@ input, select, textarea {
 
 						#sidebar nav a:after {
 							background-image: none;
-							background-color: #ff88a6;
+							background-color: #d8f9ff;
 						}
 
 		}
