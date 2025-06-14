@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<!--
+	PM10 Analysis - Air Quality Mapping Project
+	GIS Lab Project 2024/25
+-->
+<html>
+	<head>
+		<title>PM10 Analysis - Air Quality Mapping</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Air Quality Mapping</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="no2.html">NO₂</a></li>
+						<li><a href="pm25.html">PM2.5</a></li>
+						<li><a href="pm10.html" class="active">PM10</a></li>
+						<li><a href="webgis.html">WebGIS</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Coarse Particulate Matter (PM10) Analysis</h1>
+							<span class="image fit"><img src="images/pm10-banner.jpg" alt="PM10 concentration visualization" /></span>
+							
+							<!-- Introduction -->
+							<section>
+								<h2>Overview</h2>
+								<p>Particulate matter with an aerodynamic diameter of 10 micrometers or smaller (PM10) includes both fine particles (PM2.5) and coarse particles (2.5-10 μm). While PM10 particles are too large to penetrate deep into the lungs like PM2.5, they can still cause significant respiratory problems and contribute to visibility reduction and environmental degradation.</p>
+								
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Health Impacts</h3>
+										<ul>
+											<li>Respiratory tract irritation and inflammation</li>
+											<li>Aggravation of asthma and allergic responses</li>
+											<li>Increased coughing and difficulty breathing</li>
+											<li>Reduced lung function, especially in children</li>
+											<li>Eye, nose, and throat irritation</li>
+										</ul>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Major Sources</h3>
+										<ul>
+											<li>Road dust and vehicle emissions</li>
+											<li>Construction and demolition activities</li>
+											<li>Natural dust from soil erosion and wind</li>
+											<li>Industrial processes and material handling</li>
+											<li>Pollen, spores, and other biological particles</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Concentration Analysis -->
+							<section>
+								<h2>Concentration Classifications</h2>
+								<p>PM10 concentrations are evaluated against both EU annual limit values and WHO air quality guidelines. The coarse fraction (PM10-2.5) is particularly influenced by local dust sources and mechanical processes.</p>
+								
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Class</th>
+												<th>EU Classification (μg/m³)</th>
+												<th>WHO Classification (μg/m³)</th>
+												<th>Health Assessment</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>≤ 15</td>
+												<td>≤ 15</td>
+												<td>Good - WHO guideline level</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>15-30</td>
+												<td>15-20</td>
+												<td>Moderate - Above WHO guideline</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>30-40</td>
+												<td>20-30</td>
+												<td>Unhealthy for sensitive groups</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>40-50</td>
+												<td>30-50</td>
+												<td>Unhealthy - At/above EU limit</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>&gt; 50</td>
+												<td>&gt; 50</td>
+												<td>Very unhealthy - Exceeds all limits</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</section>
+
+							<!-- Temporal Trends -->
+							<section>
+								<h2>Temporal Analysis (2013-2022)</h2>
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Annual Average Trends</h3>
+										<p>PM10 concentrations display distinct seasonal and interannual variations driven by both anthropogenic emissions and natural sources. Dust storms, construction activities, and meteorological conditions significantly influence temporal patterns.</p>
+										
+										<!-- Placeholder for chart -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>PM10 Annual Average Time Series Chart</strong><br />
+											<em>Interactive chart showing yearly trends across different land cover classes</em></p>
+										</div>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>2022 Annual Average Difference</h3>
+										<p>The 2022 Annual Average Difference analysis reveals how PM10 concentrations in 2022 deviated from the 2017-2021 baseline, highlighting areas of improvement or deterioration in air quality.</p>
+										
+										<!-- Placeholder for map -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>PM10 AAD Map 2022</strong><br />
+											<em>Spatial visualization of concentration anomalies</em></p>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<!-- Land Cover Correlation -->
+							<section>
+								<h2>Land Cover Correlation</h2>
+								<p>PM10 concentrations show strong correlations with land cover types, particularly those associated with dust generation and mechanical disturbance. Urban areas, bare soil, and agricultural lands typically exhibit higher concentrations than forested or vegetated areas.</p>
+								
+								<div class="row">
+									<div class="col-8 col-12-medium">
+										<!-- Placeholder for correlation chart -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>PM10 Concentration by Land Cover Class</strong><br />
+											<em>Bar chart showing min/max concentrations for different IPCC land cover categories (2013-2022)</em></p>
+										</div>
+									</div>
+									<div class="col-4 col-12-medium">
+										<h3>Key Findings</h3>
+										<ul>
+											<li><strong>Settlement:</strong> High concentrations (construction, traffic)</li>
+											<li><strong>Cropland:</strong> Elevated during plowing/harvesting</li>
+											<li><strong>Grassland:</strong> Moderate levels, wind-dependent</li>
+											<li><strong>Forest:</strong> Lowest concentrations (canopy filtering)</li>
+											<li><strong>Wetland:</strong> Variable, seasonally dependent</li>
+											<li><strong>Other lands:</strong> High in arid/bare soil areas</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Population Exposure -->
+							<section>
+								<h2>Population Exposure Assessment</h2>
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Bivariate Analysis</h3>
+										<p>The bivariate mapping of PM10 concentrations and population density identifies priority areas for dust control measures and respiratory health protection programs.</p>
+										
+										<!-- Placeholder for bivariate map -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>PM10 vs Population Bivariate Map</strong><br />
+											<em>5x5 color matrix showing pollution-population relationships</em></p>
+										</div>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Exposure Distribution</h3>
+										<p>The population exposure analysis quantifies how many people are exposed to different levels of PM10 pollution, informing public health protection strategies.</p>
+										
+										<!-- Placeholder for pie chart -->
+										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
+											<p><strong>Population Exposure Pie Chart</strong><br />
+											<em>Distribution of population across PM10 concentration classes</em></p>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<!-- Source Characterization -->
+							<section>
+								<h2>Source Characterization</h2>
+								<p>PM10 consists of a complex mixture of particles from various sources, each with different temporal and spatial patterns. Understanding these sources is crucial for effective control strategies.</p>
+								
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Primary Sources</h3>
+										<ul>
+											<li><strong>Traffic-related:</strong> Exhaust emissions, tire/brake wear, road dust resuspension</li>
+											<li><strong>Industrial:</strong> Combustion processes, material handling, fugitive emissions</li>
+											<li><strong>Construction:</strong> Building activities, demolition, earthworks</li>
+											<li><strong>Natural:</strong> Soil erosion, sea salt, volcanic ash, biological particles</li>
+										</ul>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Secondary Formation</h3>
+										<ul>
+											<li><strong>Chemical processes:</strong> Gas-to-particle conversion of precursors</li>
+											<li><strong>Atmospheric aging:</strong> Coagulation and condensation processes</li>
+											<li><strong>Long-range transport:</strong> Regional and intercontinental pollution</li>
+											<li><strong>Meteorological factors:</strong> Temperature, humidity, and photochemistry</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Seasonal Patterns -->
+							<section>
+								<h2>Seasonal Variations</h2>
+								<p>PM10 concentrations exhibit pronounced seasonal patterns influenced by meteorological conditions, emission sources, and natural phenomena such as dust storms and agricultural activities.</p>
+								
+								<div class="row">
+									<div class="col-3 col-6-medium col-12-small">
+										<h4>Winter (DJF)</h4>
+										<p>Elevated concentrations due to residential heating, reduced precipitation, and atmospheric stability that limits particle dispersion.</p>
+									</div>
+									<div class="col-3 col-6-medium col-12-small">
+										<h4>Spring (MAM)</h4>
+										<p>Peak concentrations often occur due to dust storms, agricultural activities, and increased wind erosion as vegetation cover is minimal.</p>
+									</div>
+									<div class="col-3 col-6-medium col-12-small">
+										<h4>Summer (JJA)</h4>
+										<p>Variable patterns with potential for dust events in arid regions, but generally lower levels due to increased precipitation and atmospheric mixing.</p>
+									</div>
+									<div class="col-3 col-6-medium col-12-small">
+										<h4>Autumn (SON)</h4>
+										<p>Moderate concentrations with contributions from agricultural activities, biomass burning, and the onset of heating season emissions.</p>
+									</div>
+								</div>
+							</section>
+
+							<!-- Environmental Effects -->
+							<section>
+								<h2>Environmental and Visibility Effects</h2>
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Visibility Impacts</h3>
+										<p>PM10 significantly affects atmospheric visibility through light scattering and absorption:</p>
+										<ul>
+											<li>Reduced visual range in urban and industrial areas</li>
+											<li>Haze formation affecting scenic vistas</li>
+											<li>Impacts on aviation and transportation safety</li>
+											<li>Tourism and recreational effects in affected regions</li>
+										</ul>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Ecosystem Effects</h3>
+										<p>PM10 deposition can impact natural and agricultural ecosystems:</p>
+										<ul>
+											<li>Soil and water contamination from deposited particles</li>
+											<li>Reduced photosynthesis due to leaf surface coating</li>
+											<li>Changes in soil chemistry and nutrient availability</li>
+											<li>Impacts on sensitive vegetation and crop yields</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Control Strategies -->
+							<section>
+								<h2>Control Strategies and Best Practices</h2>
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Urban Management</h3>
+										<ul>
+											<li>Street sweeping and road surface improvements</li>
+											<li>Construction dust control regulations</li>
+											<li>Green infrastructure and urban forestry</li>
+											<li>Traffic management and clean vehicle zones</li>
+											<li>Industrial emission control technologies</li>
+										</ul>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Regional Approaches</h3>
+										<ul>
+											<li>Agricultural practice modifications</li>
+											<li>Land use planning and zoning</li>
+											<li>Natural dust source management</li>
+											<li>Cross-border cooperation for transboundary pollution</li>
+											<li>Early warning systems for dust episodes</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Monitoring and Forecasting -->
+							<section>
+								<h2>Monitoring and Forecasting</h2>
+								<p>Effective PM10 management requires comprehensive monitoring networks and forecasting capabilities to protect public health and inform policy decisions.</p>
+								
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<h3>Monitoring Technologies</h3>
+										<ul>
+											<li>Ground-based continuous monitors (TEOM, β-attenuation)</li>
+											<li>Satellite remote sensing for regional coverage</li>
+											<li>Low-cost sensor networks for high spatial resolution</li>
+											<li>Chemical speciation for source apportionment</li>
+										</ul>
+									</div>
+									<div class="col-6 col-12-medium">
+										<h3>Forecasting Applications</h3>
+										<ul>
+											<li>Chemical transport models for daily forecasts</li>
+											<li>Dust storm prediction and early warning</li>
+											<li>Health advisory systems for sensitive groups</li>
+											<li>Agricultural and construction activity planning</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<!-- Download Data -->
+							<section>
+								<h2>Data Downloads</h2>
+								<p>Access the processed PM10 datasets and analysis results:</p>
+								<ul class="actions">
+									<li><a href="#" class="button">Download PM10 Concentration Maps</a></li>
+									<li><a href="#" class="button">Download Bivariate Analysis</a></li>
+									<li><a href="#" class="button">Download Time Series Data</a></li>
+									<li><a href="#" class="button">Download Population Exposure</a></li>
+								</ul>
+							</section>
+
+							<!-- Navigation -->
+							<section>
+								<ul class="actions fit">
+									<li><a href="pm25.html" class="button">← Previous: PM2.5 Analysis</a></li>
+									<li><a href="webgis.html" class="button primary">Next: Interactive WebGIS →</a></li>
+								</ul>
+							</section>
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2025 GIS Lab Project. All rights reserved.</li>
+						<li>Template: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>Data: <a href="https://atmosphere.copernicus.eu/">Copernicus CAMS</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
