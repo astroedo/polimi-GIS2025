@@ -3874,11 +3874,9 @@ input, select, textarea {
 /* Intro */
 
 	#intro {
-		background-attachment: fixed;
-		background-image: url("images/ruhr.jpg");
-		background-position: top right;
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
+		background: #003a6b;
+		background-image: radial-gradient(circle, rgba(255,255,255,.1) 1.2px, transparent 1px);
+		background-size: 25px 25px;
 	}
 
 		#intro p {
