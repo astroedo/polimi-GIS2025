@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             visible: true
         });
 
+<<<<<<< Updated upstream
         const satelliteLayer = new TileLayer({
             source: new XYZ({
                 url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -28,6 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }),
             visible: false
         });
+=======
+// Colombia Administrative Boundaries
+let colombiaBoundary = new Image({
+    title: "Colombia Administrative level 0",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_CAMS_pm10_2022_12' }
+    }),
+    visible: true
+});
+>>>>>>> Stashed changes
 
         // Create sample pollutant layers (using different map styles as demonstration)
         const no2Layer = new TileLayer({
