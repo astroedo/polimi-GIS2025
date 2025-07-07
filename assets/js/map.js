@@ -1,116 +1,85 @@
 import 'ol/ol.css';
 import 'ol-layerswitcher/dist/ol-layerswitcher.css';
-import { Map, View, Overlay } from 'ol';
-import { Tile, Image, Group, Vector } from 'ol/layer';
-import { OSM, ImageWMS, XYZ, StadiaMaps } from 'ol/source';
-import VectorSource from 'ol/source/Vector';
-import { GeoJSON } from 'ol/format';
+
+import { Map, View } from 'ol';
+import { Tile as TileLayer, Image as ImageLayer } from 'ol/layer';
+import { OSM, ImageWMS } from 'ol/source';
 import { fromLonLat } from 'ol/proj';
-import { ScaleLine, FullScreen, MousePosition, } from 'ol/control';
+
 import LayerSwitcher from 'ol-layerswitcher';
-import { createStringXY } from 'ol/coordinate';
-import { Style, Fill, Stroke } from 'ol/style';
 
-
-// OpenStreetMap base map
-let osm = new Tile({
-    title: "Open Street Map",
-    type: "base",
-    visible: true,
-    source: new OSM()
+// Base Layer
+const osmBase = new TileLayer({
+  title: 'OpenStreetMap',
+  type: 'base',
+  visible: true,
+  source: new OSM()
 });
 
-// Colombia Administrative Boundaries
-let colombiaBoundary = new Image({
-    title: "Colombia Administrative level 0",
+// URL del GeoServer
+const geoserverURL = 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms';
+
+// Configurazione dei layer con eventuali SLD
+const germanyLayersConfig = [
+  { name: 'statistic', visible: true }, // default ON
+  { name: 'germany_no2_zonal_statistics_2013_2022' },
+  { name: 'Germany_pm2p5_zonal_statistics_2013-2022' },
+  { name: 'Germany_pm2p5_concentration_2020' },
+  { name: 'Germany_pm2p5_2020_chart' },
+  { name: 'Germany_pm2p5_2020_bivariate', style: 'bivariate_5x5_legend_vector_v2' },
+  { name: 'Germany_pm2p5_2017_2021_AAD_map _2022', style: 'Germany_pm2p5 _2017-2021_AAD_map _2022' },
+  { name: 'Germany_pm10_zonal_statistics_2013-2022' },
+  { name: 'Germany_pm10_concentration_2020' },
+  { name: 'Germany_pm10_2020_bivariate' },
+  { name: 'Germany_pm10_2017_2021_AAD_map_2022' },
+  { name: 'Germany_no2_2020_chart' },
+  { name: 'Germany_average_pm2p5_2022' },
+  { name: 'Germany_average_pm10_2022' },
+  { name: 'Germany_LC_reclassified_2022', style: 'LC_style' },
+  { name: 'Germany_CAMS_pm2p5_2022_12' },
+  { name: 'Germany_CAMS_pm10_2022_12' },
+  { name: 'GERMANY_no2_concentration_map_2020' },
+  { name: 'GERMANY_no2_2020_bivariate' },
+  { name: 'GERMANY_no2_2017_2021_AAD_map_2022', style: 'GERMANY_no2_2017_2021_AAD_2022' },
+  { name: 'GERMANY_average_no2_2022' },
+  { name: 'GERMANY_CAMS_no2_2022_12' }
+];
+
+// Creazione dinamica dei layer
+const germanyWMSLayers = germanyLayersConfig.map(layer => {
+  return new ImageLayer({
+    title: layer.name.replace(/_/g, ' ').replace(/ +/g, ' '), // Pulizia nome
+    visible: !!layer.visible, // visibile solo se true
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm0', 'STYLES': 'restricted' }
-    }),
-    visible: true
+      url: geoserverURL,
+      params: {
+        'LAYERS': `gisgeoserver_01:${layer.name}`,
+        ...(layer.style && { 'STYLES': layer.style })
+      },
+      serverType: 'geoserver',
+      crossOrigin: 'anonymous'
+    })
+  });
 });
 
-// Colombia Administrative level 1
-var colombiaDepartments = new Image({
-    title: "Colombia Administrative level 1",
-    source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm1' }
-    }),
-    opacity: 0.5,
-    visible: true
+// Mappa
+const map = new Map({
+  target: 'map',
+  layers: [
+    osmBase,
+    ...germanyWMSLayers
+  ],
+  view: new View({
+    center: fromLonLat([10.0, 51.0]),
+    zoom: 6
+  })
 });
 
-// Colombia Roads
-var colombiaRoads = new Image({
-    title: "Colombia Roads",
-    source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_roads' }
-    }),
-    visible: true
-});
+// LayerSwitcher
+map.addControl(new LayerSwitcher({
+  tipLabel: 'Layer Switcher',
+  groupSelectStyle: 'children'
+}));
 
-// Colombia Rivers
-var colombiaRivers = new Image({
-    title: "Colombia Rivers",
-    source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_rivers' }
-    }),
-    visible: true,
-    minResolution: 1000,
-    maxResolution: 5000
-});
-
-// Add the layer groups code here:
-
-
-// Map Initialization
-let mapOrigin = fromLonLat([-74, 4.6]);
-let zoomLevel = 5;
-let map = new Map({
-    target: document.getElementById('map'),
-    layers: [osm, colombiaBoundary, colombiaDepartments, colombiaRivers, colombiaRoads],
-    view: new View({
-        center: mapOrigin,
-        zoom: zoomLevel
-    }),
-    projection: 'EPSG:3857'
-});
-
-// Add the map controls here:
-
-
-// Add the LayerSwitcher control here:
-
-
-// Add the Stadia Basemaps here:
-
-
-// Add the ESRI XYZ basemaps here:
-
-
-// Add the WFS layer here:
-// First, the URL definition:
-// Then the Source and Layer definitions:
-// Finally the call to the WFS service:
-
-
-// Add the local static GeoJSON layer here:
-
-
-// Add the popup code here:
-
-
-// Add the singleclick event code here
-
-
-// Add the pointermove event code here:
-
-
-// Add the legend code here:
-
-
-// Add the layer groups to the map here, at the end of the script!
-
+// Fix resize mappa
+setTimeout(() => map.updateSize(), 1000);
