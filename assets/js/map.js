@@ -264,8 +264,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'PM10':
                     legendData = [
                         { color: '#1a9850', label: 'Good (0-15 μg/m³)' },
-                        { color: '#66bd63', label: 'Moderate (15-30 μg/m³)' },
-                        { color: '#fee08b', label: 'Unhealthy for Sensitive (30-40 μg/m³)' },
+                        { color: '#66bd63', label: 'Moderate (15-31 μg/m³)' },
+                        { color: '#fee08b', label: 'Unhealthy for Sensitive (31-40 μg/m³)' },
                         { color: '#fdae61', label: 'Unhealthy (40-50 μg/m³)' },
                         { color: '#d73027', label: 'Very Unhealthy (>50 μg/m³)' }
                     ];
