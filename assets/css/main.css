@@ -3922,3 +3922,102 @@ input, select, textarea {
 	border: solid 2px rgba(255, 255, 255, 0.15);
 	transition: transform 0.3s ease, border-color 0.3s ease;
 }
+
+/* Banner Image Standardization Styles */
+
+/* Main banner image styling for analysis pages */
+.image.fit img,
+span.image.fit img {
+    width: 100%;
+    height: 350px; /* Fixed height to match PM2.5 page */
+    object-fit: cover; /* Maintains aspect ratio while filling container */
+    object-position: center center; /* Centers the image */
+    border-radius: 0.25em; /* Matches existing border radius */
+    display: block;
+}
+
+/* Specific styling for banner containers */
+.banner-image {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 0.25em;
+    margin-bottom: 2em;
+}
+
+.banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* Alternative class for pages that need consistent banner sizing */
+.standardized-banner {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 0.25em;
+    margin-bottom: 2em;
+    position: relative;
+}
+
+.standardized-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 980px) {
+    .image.fit img,
+    span.image.fit img,
+    .banner-image,
+    .standardized-banner {
+        height: 250px; /* Reduced height for tablets */
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .image.fit img,
+    span.image.fit img,
+    .banner-image,
+    .standardized-banner {
+        height: 200px; /* Further reduced for mobile */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image.fit img,
+    span.image.fit img,
+    .banner-image,
+    .standardized-banner {
+        height: 180px; /* Minimal height for small screens */
+    }
+}
+
+/* Ensure the banner doesn't interfere with page layout */
+.wrapper .inner > .image.fit:first-child,
+.wrapper .inner > .banner-image:first-child,
+.wrapper .inner > .standardized-banner:first-child {
+    margin-top: 0;
+}
+
+/* Optional: Add subtle shadow for better visual separation */
+.banner-image,
+.standardized-banner {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* For PM10 page - specific styling to match the 350px height */
+.pm10-banner {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 0.25em;
+    display: block;
+}
