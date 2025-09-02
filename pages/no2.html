@@ -34,14 +34,12 @@
 					<section id="main" class="wrapper">
 						<div class="inner">
 							<h1 class="major">Nitrogen Dioxide (NO₂) Analysis</h1>
-							<span class="image fit"><img src="../images/no2_images/no2_banner.jpg" alt="NO2 concentration visualization" style="height: 500px; object-fit: cover;" /></span>
+							<span class="image fit"><img src="../images/no2_images/no2_banner.jpg" alt="NO2 banner visualization" style="height: 500px; object-fit: cover;" /></span>
 							
 							<!-- Introduction -->
 							<section>
 								<h2>Overview</h2>
 								<p>Nitrogen dioxide (NO₂) is a major air pollutant primarily emitted from vehicle exhausts, power plants, and industrial facilities. It plays a crucial role in atmospheric chemistry as a precursor to ground-level ozone and secondary particulate matter formation. Our analysis covers the period 2013-2022, examining spatial patterns, temporal trends, and relationships with land cover types across the study area.</p>
-								
-								
 							</section>
 
 							<!-- Concentration Analysis -->
@@ -99,51 +97,68 @@
 							<section>
 								<h2>Temporal Analysis (2013-2022)</h2>
 								<div class="row">
-									<div class="col-6 col-12-medium">
+									<div class="col-12 col-12-medium">
 										<h3>Annual Average Trends</h3>
-										<p>The time series analysis reveals significant temporal variations in NO₂ concentrations across the study period. Urban areas consistently show higher concentrations compared to rural regions, with notable decreases during 2020 due to COVID-19 mobility restrictions.</p>
-										
-										<!-- Placeholder for chart -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>NO₂ Annual Average Time Series Chart</strong><br />
-											<em>Interactive chart showing yearly trends for different land cover classes</em></p>
-										</div>
+										<p>This temporal analysis examining NO₂ concentration trends using CAMS reanalysis data. The analysis reveals temporal variations with urban areas consistently showing higher concentrations (20-30 μg/m³) compared to rural regions (5-15 μg/m³). Both environments experienced notable decreases during 2020 due to COVID-19 mobility restrictions. The accompanying spatial map displays the 2022 Annual Average Difference from the 2017-2022, showing mixed patterns of concentration changes across the study area with a color-coded legend indicating improvements (blue) to deteriorations (red) relative to the five-year average.</p>
+
 									</div>
+
+									
+								</div>
+
+								<div class="row">
 									<div class="col-6 col-12-medium">
-										<h3>2022 Annual Average Difference</h3>
-										<p>The 2022 Annual Average Difference from the 2017-2021 mean shows spatial patterns of concentration changes. Positive values indicate higher pollution than the 5-year average, while negative values suggest improvement or temporary reductions.</p>
-										
-										<!-- Placeholder for map -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>NO₂ AAD Map 2022</strong><br />
-											<em>Spatial visualization of concentration anomalies</em></p>
-										</div>
+										<span class="image fit"><img src="../images/no2_images/No2_Concentration.jpg" alt="NO2 concentration visualization" style="height: 400px; " /></span>
 									</div>
+
+									<div class="col-6 col-12-medium">
+										<span class="image fit"><img src="../images/no2_images/AAD2017_2022.jpg" alt="NO2 difference visualization" style="height: 400px;" /></span>
+									</div>
+									
+									
 								</div>
 							</section>
 
 							<!-- Land Cover Correlation -->
 							<section>
 								<h2>Land Cover Correlation</h2>
-								<p>The relationship between NO₂ concentrations and land cover types reveals important insights into pollution sources and spatial distribution patterns. Urban and industrial areas show consistently higher concentrations compared to natural and agricultural lands.</p>
-								
+								<p>	Understanding the relationship between NO₂ concentrations and different land cover types provides crucial insights into emission sources and their spatial patterns. This analysis examines how human activities and natural environments influence atmospheric nitrogen dioxide levels across the study region.
 								<div class="row">
-									<div class="col-8 col-12-medium">
-										<!-- Placeholder for correlation chart -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>NO₂ Concentration by Land Cover Class</strong><br />
-											<em>Bar chart showing min/max concentrations for different IPCC land cover categories (2013-2022)</em></p>
-										</div>
+									<div class="col-6 col-12-medium">
+										<h3> Land cover classification 2022</h3>
+										<span class="image fit"><img src="../images/no2_images/LC_2022.jpg" alt="Land Cover visualization" style="height: 400px;" /></span>
 									</div>
 									<div class="col-4 col-12-medium">
 										<h3>Key Findings</h3>
 										<ul>
 											<li><strong>Settlement:</strong> Highest concentrations (urban emissions)</li>
-											<li><strong>Cropland:</strong> Moderate levels (agricultural machinery)</li>
+											<li><strong>Agriculture:</strong> Moderate levels (agricultural machinery)</li>
 											<li><strong>Grassland:</strong> Lower concentrations</li>
 											<li><strong>Forest:</strong> Lowest levels (natural absorption)</li>
 											<li><strong>Wetland:</strong> Variable depending on location</li>
-											<li><strong>Other lands:</strong> Site-specific patterns</li>
+											<li><strong>Other lands:</strong> Water and ice</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+														<!-- Land Cover Correlation -->
+							<section>
+								<p>	Using ESA CCI Land Cover data in conjunction with CAMS reanalysis, this correlation study quantifies the varying pollution levels across six major land cover categories. The results demonstrate clear linkages between land use patterns and air quality, with anthropogenic landscapes showing significantly elevated concentrations compared to natural ecosystems. Urban and industrial areas consistently show higher concentrations compared to natural and agricultural lands, reflecting the direct impact of human activities on local air quality. This spatial analysis helps identify pollution hotspots and guides targeted mitigation strategies for different landscape types.</p>
+								
+								<div class="row">
+									<div class="col-6 col-12-medium">
+										<!-- Placeholder for correlation chart -->
+										<span class="image fit"><img src="../images/no2_images/no2_average.jpg" alt="NO2 average visualization" style="height: 400px;" /></span>
+									</div>
+									<div class="col-4 col-12-medium">
+										<h3>Hotspots</h3>
+										<ul>
+											<li><strong>Rhine-Ruhr region:</strong> Biggest metropolitan region</li>
+											<li><strong>Rhine-Main region:</strong> Second largest metropolitan area</li>
+											<li><strong>Hamburg port:</strong> Biggest port in Germany</li>
+											<li><strong>Berlin area:</strong> Metropolitan area around the capital Berlin</li>
+											<li><strong>Munchen region:</strong> The richest region in Germany </li>
+											<li><strong>Stuttgard region:</strong> One of the economical stongest region in Europe </li>
 										</ul>
 									</div>
 								</div>
@@ -157,11 +172,8 @@
 										<h3>Bivariate Analysis</h3>
 										<p>The bivariate map combines NO₂ concentration levels with population density to identify areas of highest concern. This analysis helps prioritize intervention strategies and assess public health risks.</p>
 										
-										<!-- Placeholder for bivariate map -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>NO₂ vs Population Bivariate Map</strong><br />
-											<em>5x5 color matrix showing pollution-population relationships</em></p>
-										</div>
+
+									<span class="image fit"><img src="../images/no2_images/bivariate.jpg" alt="NO2 bivariate visualization" style="height: 400px;" /></span>
 									</div>
 									<div class="col-6 col-12-medium">
 										<h3>Exposure Distribution</h3>
