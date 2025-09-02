@@ -35,36 +35,35 @@ const landCover = new Group({
 });
 
 const nox = new Group({
-  title: 'NOx',
+  title: 'NO₂ (Nitrogen Dioxide)',
   layers: [
-    createWMSLayer('no2_concentration_map_2020', 'gisgeoserver_01:GERMANY_no2_concentration_map_2020', 'LC_style'), // concentration
-    createWMSLayer('average_no2_2022', 'gisgeoserver_01:GERMANY_average_no2_2022'), // average
-    createWMSLayer('no2_2017_2021_AAD_map_2022', 'gisgeoserver_01:GERMANY_no2_2017_2021_AAD_map_2022', 'GERMANY_no2_2017_2021_AAD_2022'), // AAD
-    createWMSLayer('no2_2020_bivariate', 'gisgeoserver_01:GERMANY_no2_2020_bivariate'), // bivariate
-    createWMSLayer('CAMS_no2_2022_12', 'gisgeoserver_01:GERMANY_CAMS_no2_2022_12') // CAMS
+    createWMSLayer('NO₂ Concentration Map 2020', 'gisgeoserver_01:GERMANY_no2_concentration_map_2020', 'LC_style'),
+    createWMSLayer('NO₂ Average 2022', 'gisgeoserver_01:GERMANY_average_no2_2022'),
+    createWMSLayer('NO₂ AAD Map 2017-2021', 'gisgeoserver_01:GERMANY_no2_2017_2021_AAD_map_2022', 'GERMANY_no2_2017_2021_AAD_2022'),
+    createWMSLayer('NO₂ Bivariate Map 2020', 'gisgeoserver_01:GERMANY_no2_2020_bivariate'),
+    createWMSLayer('CAMS NO₂ December 2022', 'gisgeoserver_01:GERMANY_CAMS_no2_2022_12')
   ]
 });
 
-
 const pm25 = new Group({
-  title: 'PM2.5',
+  title: 'PM2.5 (Fine Particulate Matter)',
   layers: [
-    createWMSLayer('pm2p5_concentration_2020', 'gisgeoserver_01:Germany_pm2p5_concentration_2020'), // concentration
-    createWMSLayer('average_pm2p5_2022', 'gisgeoserver_01:Germany_average_pm2p5_2022'), // average
-    createWMSLayer('pm2p5_2017_2021_AAD_map _2022', 'gisgeoserver_01:Germany_pm2p5_2017_2021_AAD_map _2022', 'Germany_pm2p5 _2017-2021_AAD_map _2022'), // AAD
-    createWMSLayer('pm2p5_2020_bivariate', 'gisgeoserver_01:Germany_pm2p5_2020_bivariate'), // bivariate
-    createWMSLayer('CAMS_pm2p5_2022_12', 'gisgeoserver_01:Germany_CAMS_pm2p5_2022_12') // CAMS
+    createWMSLayer('PM2.5 Concentration 2020', 'gisgeoserver_01:Germany_pm2p5_concentration_2020'),
+    createWMSLayer('PM2.5 Average 2022', 'gisgeoserver_01:Germany_average_pm2p5_2022'),
+    createWMSLayer('PM2.5 AAD Map 2017-2021', 'gisgeoserver_01:Germany_pm2p5_2017_2021_AAD_map _2022', 'Germany_pm2p5 _2017-2021_AAD_map _2022'),
+    createWMSLayer('PM2.5 Bivariate Map 2020', 'gisgeoserver_01:Germany_pm2p5_2020_bivariate'),
+    createWMSLayer('CAMS PM2.5 December 2022', 'gisgeoserver_01:Germany_CAMS_pm2p5_2022_12')
   ]
 });
 
 const pm10 = new Group({
-  title: 'PM10',
+  title: 'PM10 (Coarse Particulate Matter)',
   layers: [
-    createWMSLayer('pm10_concentration_2020', 'gisgeoserver_01:Germany_pm10_concentration_2020'), // concentration
-    createWMSLayer('average_pm10_2022', 'gisgeoserver_01:Germany_average_pm10_2022'), // average
-    createWMSLayer('pm10_2017_2021_AAD_map_2022', 'gisgeoserver_01:Germany_pm10_2017_2021_AAD_map_2022', 'Germany_pm2p5 _2017-2021_AAD_map _2022'), // AAD
-    createWMSLayer('pm10_2020_bivariate', 'gisgeoserver_01:Germany_pm10_2020_bivariate'), // bivariate
-    createWMSLayer('CAMS_pm10_2022_12', 'gisgeoserver_01:Germany_CAMS_pm10_2022_12') // CAMS
+    createWMSLayer('PM10 Concentration 2020', 'gisgeoserver_01:Germany_pm10_concentration_2020'),
+    createWMSLayer('PM10 Average 2022', 'gisgeoserver_01:Germany_average_pm10_2022'),
+    createWMSLayer('PM10 AAD Map 2017-2021', 'gisgeoserver_01:Germany_pm10_2017_2021_AAD_map_2022', 'Germany_pm2p5 _2017-2021_AAD_map _2022'),
+    createWMSLayer('PM10 Bivariate Map 2020', 'gisgeoserver_01:Germany_pm10_2020_bivariate'),
+    createWMSLayer('CAMS PM10 December 2022', 'gisgeoserver_01:Germany_CAMS_pm10_2022_12')
   ]
 });
 
