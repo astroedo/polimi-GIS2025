@@ -2,7 +2,7 @@
 #map {
     width: 100%;
     height: 100vh;
-    position: relative;
+    position: absolute;
     background-color: #f0f0f0;
     z-index: 1;
 }
@@ -22,8 +22,8 @@
 .floating-button {
     position: absolute;
     z-index: 1000;
-    left: 20px;
-    top: 20px;
+    left: 60px;
+    top: 30px;
 }
 
 .floating-button .btn {
@@ -110,7 +110,7 @@
     user-select: none;
 }
 
-/* Legend container */
+/* Legend container 
 .legend-container {
     position: absolute;
     z-index: 999;
@@ -170,7 +170,7 @@
     color: #333;
     line-height: 1.3;
 }
-
+*/
 /* Popup styles */
 .ol-popup {
     position: absolute;
@@ -347,4 +347,13 @@
 
 .ol-attribution:hover {
     background: rgba(255,255,255,0.9);
+}
+
+.custom-control {
+position: absolute;
+bottom: 30px;
+right: 15px;
+background: white;
+border: 2px solid cadetblue;
+padding: 10px;
 }
