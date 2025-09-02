@@ -4,348 +4,298 @@
 	GIS Lab Project 2024/25
 -->
 <html>
-	<head>
-		<title>PM2.5 Analysis - Air Quality Mapping</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Header -->
-			<header id="header">
-				<a href="../index.html" class="title">Air Quality Mapping</a>
-				<nav>
-					<ul>
-						<li><a href="../index.html">Home</a></li>
-						<li><a href="no2.html">NO₂</a></li>
-						<li><a href="pm25.html" class="active">PM2.5</a></li>
-						<li><a href="pm10.html">PM10</a></li>
-						<li><a href="webgis.html">WebGIS</a></li>
-					</ul>
-				</nav>
-			</header>
+<head>
+	<title>PM2.5 Analysis - Air Quality Mapping</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="../assets/css/noscript.css" />
+	</noscript>
+</head>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<body class="is-preload">
 
-				<!-- Main -->
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">Fine Particulate Matter (PM2.5) Analysis</h1>
-							<span class="image fit"><img src="images/pm25-banner.jpg" alt="PM2.5 concentration visualization" /></span>
-							
-							<!-- Introduction -->
-							<section>
-								<h2>Overview</h2>
-								<p>Fine particulate matter (PM2.5) consists of particles with an aerodynamic diameter of 2.5 micrometers or smaller. These particles are particularly concerning for human health because they can penetrate deep into the lungs and enter the bloodstream, causing cardiovascular and respiratory diseases. PM2.5 is considered one of the most harmful air pollutants by the World Health Organization.</p>
-								
-								<div class="row">
-									<div class="col-6 col-12-medium">
-										<h3>Health Impacts</h3>
-										<ul>
-											<li>Cardiovascular disease and heart attacks</li>
-											<li>Stroke and irregular heart rhythm</li>
-											<li>Respiratory infections and lung cancer</li>
-											<li>Premature death in people with heart/lung disease</li>
-											<li>Reduced lung function and development</li>
-										</ul>
-									</div>
-									<div class="col-6 col-12-medium">
-										<h3>Major Sources</h3>
-										<ul>
-											<li>Vehicle emissions and road dust</li>
-											<li>Industrial combustion processes</li>
-											<li>Residential wood and coal burning</li>
-											<li>Secondary particle formation in atmosphere</li>
-											<li>Natural sources (wildfires, dust storms)</li>
-										</ul>
-									</div>
-								</div>
-							</section>
+	<!-- Header -->
+	<header id="header">
+		<a href="../index.html" class="title">Air Quality Mapping</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Home</a></li>
+				<li><a href="no2.html">NO₂</a></li>
+				<li><a href="pm25.html" class="active">PM2.5</a></li>
+				<li><a href="pm10.html">PM10</a></li>
+				<li><a href="webgis.html">WebGIS</a></li>
+			</ul>
+		</nav>
+	</header>
 
-							<!-- Concentration Analysis -->
-							<section>
-								<h2>Concentration Classifications</h2>
-								<p>PM2.5 concentrations are classified according to both EU annual limit values and WHO air quality guidelines. The WHO guidelines for PM2.5 are particularly stringent, reflecting the severe health impacts of fine particulate matter.</p>
-								
-								<div class="table-wrapper">
-									<table>
-										<thead>
-											<tr>
-												<th>Class</th>
-												<th>EU Classification (μg/m³)</th>
-												<th>WHO Classification (μg/m³)</th>
-												<th>Health Assessment</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>≤ 5</td>
-												<td>≤ 5</td>
-												<td>Good - WHO guideline level</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>5-10</td>
-												<td>5-10</td>
-												<td>Moderate - Above WHO guideline</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>10-20</td>
-												<td>10-15</td>
-												<td>Unhealthy for sensitive groups</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td>20-25</td>
-												<td>15-25</td>
-												<td>Unhealthy - Approaches EU limit</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td>&gt; 25</td>
-												<td>&gt; 35</td>
-												<td>Very unhealthy - Exceeds EU limit</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</section>
+	<!-- Wrapper -->
+	<div id="wrapper">
 
-							<!-- Temporal Trends -->
-							<section>
-								<h2>Temporal Analysis (2013-2022)</h2>
-								<div class="row">
-									<div class="col-6 col-12-medium">
-										<h3>Annual Average Trends</h3>
-										<p>PM2.5 concentrations show complex temporal patterns influenced by meteorological conditions, emission sources, and long-range transport. Winter months typically exhibit higher concentrations due to increased heating emissions and atmospheric stability.</p>
-										
-										<!-- Placeholder for chart -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>PM2.5 Annual Average Time Series Chart</strong><br />
-											<em>Interactive chart showing yearly trends across different land cover classes</em></p>
-										</div>
-									</div>
-									<div class="col-6 col-12-medium">
-										<h3>2022 Annual Average Difference</h3>
-										<p>The 2022 Annual Average Difference from the 2017-2021 mean reveals spatial patterns of PM2.5 concentration changes. This analysis helps identify regions with improving or deteriorating air quality conditions.</p>
-										
-										<!-- Placeholder for map -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>PM2.5 AAD Map 2022</strong><br />
-											<em>Spatial visualization of concentration anomalies</em></p>
-										</div>
-									</div>
-								</div>
-							</section>
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<h1 class="major">Fine Particulate Matter (PM2.5) Analysis</h1>
+				<span class="image fit"><img src="../images/pm2p5_images/1.jpg"
+						alt="PM2.5 concentration visualization" 
+						style="max-height: 350px; width: 100%; object-fit: cover;"/></span>
 
-							<!-- Land Cover Correlation -->
-							<section>
-								<h2>Land Cover Correlation</h2>
-								<p>The relationship between PM2.5 concentrations and land cover types provides insights into pollution sources and transport mechanisms. Unlike gaseous pollutants, PM2.5 can be transported over long distances, leading to more uniform spatial distribution patterns.</p>
-								
-								<div class="row">
-									<div class="col-8 col-12-medium">
-										<!-- Placeholder for correlation chart -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>PM2.5 Concentration by Land Cover Class</strong><br />
-											<em>Bar chart showing min/max concentrations for different IPCC land cover categories (2013-2022)</em></p>
-										</div>
-									</div>
-									<div class="col-4 col-12-medium">
-										<h3>Key Findings</h3>
-										<ul>
-											<li><strong>Settlement:</strong> Highest concentrations (urban emissions)</li>
-											<li><strong>Cropland:</strong> Elevated levels (agricultural burning)</li>
-											<li><strong>Grassland:</strong> Moderate concentrations</li>
-											<li><strong>Forest:</strong> Lower levels but affected by wildfires</li>
-											<li><strong>Wetland:</strong> Variable regional patterns</li>
-											<li><strong>Other lands:</strong> Influenced by local sources</li>
-										</ul>
-									</div>
-								</div>
-							</section>
+				<!-- Introduction -->
+				<section>
+					<h2>Overview</h2>
+					<p>Fine particulate matter (PM2.5) consists of particles with an aerodynamic diameter of 2.5
+						micrometers or smaller. These particles are particularly concerning for human health because
+						they can penetrate deep into the lungs and enter the bloodstream, causing cardiovascular and
+						respiratory diseases. PM2.5 is considered one of the most harmful air pollutants by the World
+						Health Organization.</p>
 
-							<!-- Population Exposure -->
-							<section>
-								<h2>Population Exposure Assessment</h2>
-								<div class="row">
-									<div class="col-6 col-12-medium">
-										<h3>Bivariate Analysis</h3>
-										<p>The bivariate map reveals critical areas where high PM2.5 concentrations coincide with dense population clusters. This analysis is essential for public health risk assessment and intervention planning.</p>
-										
-										<!-- Placeholder for bivariate map -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>PM2.5 vs Population Bivariate Map</strong><br />
-											<em>5x5 color matrix showing pollution-population relationships</em></p>
-										</div>
-									</div>
-									<div class="col-6 col-12-medium">
-										<h3>Exposure Distribution</h3>
-										<p>The population exposure chart quantifies the number of people living in areas with different PM2.5 concentration levels, highlighting the scale of public health challenges.</p>
-										
-										<!-- Placeholder for pie chart -->
-										<div class="box" style="background: #f4f4f4; padding: 2em; text-align: center; border: 2px dashed #ddd;">
-											<p><strong>Population Exposure Pie Chart</strong><br />
-											<em>Distribution of population across PM2.5 concentration classes</em></p>
-										</div>
-									</div>
-								</div>
-							</section>
-
-							<!-- Meteorological Influences -->
-							<section>
-								<h2>Meteorological Influences</h2>
-								<p>PM2.5 concentrations are strongly influenced by meteorological conditions that affect both emission rates and atmospheric transport. Understanding these relationships is crucial for accurate exposure assessment and forecasting.</p>
-								
-								<div class="row">
-									<div class="col-6 col-12-medium">
-										<h3>Atmospheric Conditions</h3>
-										<ul>
-											<li><strong>Wind Speed:</strong> Higher speeds promote dispersion and reduce concentrations</li>
-											<li><strong>Atmospheric Stability:</strong> Stable conditions trap pollutants near the surface</li>
-											<li><strong>Mixing Height:</strong> Lower mixing heights concentrate pollutants</li>
-											<li><strong>Precipitation:</strong> Wet deposition removes particles from the atmosphere</li>
-										</ul>
-									</div>
-									<div class="col-6 col-12-medium">
-										<h3>Secondary Formation</h3>
-										<ul>
-											<li><strong>Temperature:</strong> Affects gas-to-particle conversion rates</li>
-											<li><strong>Humidity:</strong> Influences hygroscopic particle growth</li>
-											<li><strong>Solar Radiation:</strong> Drives photochemical reactions</li>
-											<li><strong>Chemical Precursors:</strong> SO₂, NO₂, NH₃, and VOCs contribute to formation</li>
-										</ul>
-									</div>
-								</div>
-							</section>
-
-							<!-- Seasonal Patterns -->
-							<section>
-								<h2>Seasonal Variations</h2>
-								<p>PM2.5 exhibits pronounced seasonal patterns driven by emission variations, meteorological conditions, and atmospheric chemistry. These patterns vary significantly across different geographical regions.</p>
-								
-								<div class="row">
-									<div class="col-3 col-6-medium col-12-small">
-										<h4>Winter (DJF)</h4>
-										<p>Peak concentrations due to residential heating, reduced atmospheric mixing, and enhanced secondary particle formation in stable conditions.</p>
-									</div>
-									<div class="col-3 col-6-medium col-12-small">
-										<h4>Spring (MAM)</h4>
-										<p>Transitional period with moderate levels influenced by dust events, agricultural activities, and changing meteorological patterns.</p>
-									</div>
-									<div class="col-3 col-6-medium col-12-small">
-										<h4>Summer (JJA)</h4>
-										<p>Generally lower concentrations but potential for wildfire episodes and enhanced photochemical secondary particle formation.</p>
-									</div>
-									<div class="col-3 col-6-medium col-12-small">
-										<h4>Autumn (SON)</h4>
-										<p>Increasing concentrations as heating season begins, with agricultural burning and biomass combustion contributing to levels.</p>
-									</div>
-								</div>
-							</section>
-
-							<!-- Health Impact Assessment -->
-							<section>
-								<h2>Health Impact Assessment</h2>
-								<div class="row">
-									<div class="col-6 col-12-medium">
-										<h3>WHO Findings</h3>
-										<p>According to WHO estimates, PM2.5 air pollution is responsible for:</p>
-										<ul>
-											<li>7 million premature deaths annually worldwide</li>
-											<li>Significant burden of cardiovascular disease</li>
-											<li>Increased risk of respiratory infections in children</li>
-											<li>Reduced life expectancy in heavily polluted areas</li>
-										</ul>
-									</div>
-									<div class="col-6 col-12-medium">
-										<h3>Vulnerable Populations</h3>
-										<p>Certain groups face higher risks from PM2.5 exposure:</p>
-										<ul>
-											<li>Children and elderly individuals</li>
-											<li>People with pre-existing heart/lung conditions</li>
-											<li>Pregnant women and developing fetuses</li>
-											<li>Outdoor workers and athletes</li>
-										</ul>
-									</div>
-								</div>
-							</section>
-
-							<!-- Policy Recommendations -->
-							<section>
-								<h2>Policy Implications and Recommendations</h2>
-								<div class="row">
-									<div class="col-6 col-12-medium">
-										<h3>Current Challenges</h3>
-										<ul>
-											<li>Widespread exceedance of WHO guidelines (5 μg/m³)</li>
-											<li>Transboundary pollution requiring regional cooperation</li>
-											<li>Complex source mix including primary and secondary PM2.5</li>
-											<li>Seasonal variations complicating control strategies</li>
-										</ul>
-									</div>
-									<div class="col-6 col-12-medium">
-										<h3>Mitigation Strategies</h3>
-										<ul>
-											<li>Stricter emission standards for vehicles and industry</li>
-											<li>Promotion of clean energy and heating systems</li>
-											<li>Agricultural burning restrictions and alternatives</li>
-											<li>Regional air quality management coordination</li>
-											<li>Real-time monitoring and public health alerts</li>
-										</ul>
-									</div>
-								</div>
-							</section>
-
-							<!-- Download Data -->
-							<section>
-								<h2>Data Downloads</h2>
-								<p>Access the processed PM2.5 datasets and analysis results:</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Download PM2.5 Concentration Maps</a></li>
-									<li><a href="#" class="button">Download Bivariate Analysis</a></li>
-									<li><a href="#" class="button">Download Time Series Data</a></li>
-									<li><a href="#" class="button">Download Population Exposure</a></li>
-								</ul>
-							</section>
-
-							<!-- Navigation -->
-							<section>
-								<ul class="actions fit">
-									<li><a href="no2.html" class="button">← Previous: NO₂ Analysis</a></li>
-									<li><a href="pm10.html" class="button primary">Next: PM10 Analysis →</a></li>
-								</ul>
-							</section>
-
+					<div class="row">
+						<div class="col-6 col-12-medium">
+							<h3>Health Impacts</h3>
+							<ul>
+								<li>Cardiovascular disease and heart attacks</li>
+								<li>Stroke and irregular heart rhythm</li>
+								<li>Respiratory infections and lung cancer</li>
+								<li>Premature death in people with heart/lung disease</li>
+								<li>Reduced lung function and development</li>
+							</ul>
 						</div>
+						<div class="col-6 col-12-medium">
+							<h3>Major Sources</h3>
+							<ul>
+								<li>Vehicle emissions and road dust</li>
+								<li>Industrial combustion processes</li>
+								<li>Residential wood and coal burning</li>
+								<li>Secondary particle formation in atmosphere</li>
+								<li>Natural sources (wildfires, dust storms)</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Concentration Analysis -->
+				<section>
+					<h2>Concentration Classifications</h2>
+					<p>PM2.5 concentrations are classified according to both EU annual limit values and WHO air quality
+						guidelines. The WHO guidelines for PM2.5 are particularly stringent, reflecting the severe
+						health impacts of fine particulate matter.</p>
+
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Class</th>
+									<th>EU Classification (μg/m³)</th>
+									<th>WHO Classification (μg/m³)</th>
+									<th>Health Assessment</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>≤ 5</td>
+									<td>≤ 5</td>
+									<td>Good - WHO guideline level</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>5-10</td>
+									<td>5-10</td>
+									<td>Moderate - Above WHO guideline</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>10-20</td>
+									<td>10-15</td>
+									<td>Unhealthy for sensitive groups</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>20-25</td>
+									<td>15-25</td>
+									<td>Unhealthy - Approaches EU limit</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>&gt; 25</td>
+									<td>&gt; 35</td>
+									<td>Very unhealthy - Exceeds EU limit</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<!-- Temporal Trends -->
+				<section>
+					<h2>Temporal Analysis (2013-2022)</h2>
+					<div class="row">
+						<div class="col-6 col-12-medium">
+							<h3>Annual Average Trends</h3>
+							<p> PM2.5 average and maximum concentrations in settlement areas show an overall decreasing
+								trend
+								over the years, with some fluctuations. The lowest values were recorded in 2020,
+								largely due to reduced vehicle traffic and industrial activity during the COVID-19
+								restrictions.
+								The values correspond to the classes 2 and 3 (between 5 and 20 μg/m³) of the EU classification. 
+								<br>
+				
+							</p>
+
+							<!-- Placeholder for chart -->
+							<div class="box"
+								style="background: url('../images/pm2p5_images/barchart.png') center/cover; padding: 2em; text-align: center; border: 2px dashed #ddd; min-height: 300px;">
+
+							</div>
+						</div>
+						<div class="col-6 col-12-medium">
+							<h3>2022 Annual Average Difference</h3>
+							<p>The 2022 Annual Average Difference from the 2017-2021 mean reveals spatial patterns of
+								PM2.5 concentration changes: most of the territory presents stable values, with some
+								areas showing slight decreases.
+								Localized increases are visible mainly in the Rhur region (an highly urbanized and industrialized area, see
+								Land Cover Map) and along the borders, the latter are likely due to data processing.
+
+							<div class="box"
+								style="background: url('../images/pm2p5_images/2.jpeg') center/cover; padding: 2em; text-align: center; border: 2px dashed #ddd; min-height: 300px;">
+
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Land Cover Correlation -->
+				<section>
+					<h2>Land Cover Correlation</h2>
+					<div class="row">
+						<div class="col-6 col-12-medium">
+							<h3>Land Cover Map</h3>
+							<p>
+								Land cover classification according to the ESA CCI LC 2022.
+							</p>
+							<!-- Placeholder for chart -->
+							<div class="box"
+								style="background: url('../images/pm2p5_images/3.jpeg') center/cover; padding: 2em; text-align: center; border: 2px dashed #ddd; min-height: 300px;">
+
+							</div>
+						</div>
+						<div class="col-6 col-12-medium">
+							<h3>2022 Average Concentration</h3>
+							<p> CAMS European Air Quality Reanalysis data.
+
+							<div class="box"
+								style="background: url('../images/pm2p5_images/5.jpeg') center/cover; padding: 2em; text-align: center; border: 2px dashed #ddd; min-height: 300px;">
+
+								</p>
+							</div>
+						</div>
+					</div>
+					<div>
+						<p>
+							The comparison between the land cover map and the concentration map shows the correlation of
+							the higher value of pollution in corrispondence of the urban area and the lower concentration 
+							in corrispondence of the forests, with an increment in the agricolture zones.
+						</p>
+					</div>
+				</section>
+
+
+				<!-- Population Exposure -->
+				<section>
+					<h2>Population Exposure Assessment</h2>
+					<div class="row">
+						<div class="col-6 col-12-medium">
+							<h3>Bivariate Analysis</h3>
+							<p>The bivariate map reveals critical areas where high PM2.5 concentrations coincide with
+								dense population clusters.<br>
+								In the following are shown the legend and the map.
+								<br>
+								<br>
+								<br>
+								<br>
+							 </p>
+
+							<!-- Placeholder for bivariate map -->
+							<div class="box"
+								style="background: url('../images/pm2p5_images/6.png') center/cover; padding: 2em; text-align: center; border: 2px dashed #ddd; min-height: 300px;">
+
+							</div>
+							
+						</div>
+						<div class="col-6 col-12-medium">
+							<h3>Exposure Distribution</h3>
+							<p>The population exposure chart quantifies the number of people living in areas with
+								different PM2.5 concentration levels, highlighting the scale of public health
+								challenges.<br> The 86.8% of the population (679 286 21 people ) are exposed to a pollutant
+								level 2 instead the
+								13.2% (103 008 43 people) of the population are exposed to level 3 of WHO classification.
+							</p>
+
+							<!-- Placeholder for pie chart -->
+							<div class="box"
+								style="background: url('../images/pm2p5_images/pie.png') center/cover; padding: 2em; text-align: center; border: 2px dashed #ddd; min-height: 300px;">
+
+							</div>
+						</div>
+					</div>
+					<div class="box"
+						style="background: url('../images/pm2p5_images/4.jpeg') center/cover; padding: 2em; text-align: center; border: 2px dashed #ddd; min-height: 600px;">
+					</div>
+					<p>
+						The bivariate map reveals critical environmental health hotspots where elevated PM2.5 concentrations intersect with 
+						dense population clusters across Germany. The highest-risk populations are concentrated in western Germany,
+						particularly in industrial regions like the Ruhr Valley, where moderate-to-high pollution levels (categories 34-35, shown in dark tones) 
+						coincide with significant population density.<br>
+						<br>
+						&emsp;Western Germany demonstrates a concerning pattern of widespread moderate pollution exposure affecting large 
+						population centers (category 25, dark pink), indicating substantial public health implications due to the high number of 
+						people exposed. In contrast, eastern Germany shows a different risk profile, with scattered dark spots representing areas
+						of higher pollution concentrations but affecting smaller population clusters (categories 31-33), suggesting more localized
+						pollution sources with limited demographic impact.<br>
+						<br>
+						&emsp;The map also identifies safer zones primarily in northern and some southern rural areas (categories 21-23, light tones) 
+						where both population density and pollution levels remain low. This spatial analysis highlights the complex relationship 
+						between urbanization, industrial activity, and air quality, emphasizing that the most critical public health concerns arise 
+						not necessarily from the highest pollution levels, but from areas where moderate-to-high concentrations affect the largest number 
+						of people.
+					</p>
+
+					<!-- Navigation -->
+					<section>
+						<ul class="actions fit">
+							<li><a href="no2.html" class="button">← Previous: NO₂ Analysis</a></li>
+							<li><a href="pm10.html" class="button primary">Next: PM10 Analysis →</a></li>
+						</ul>
 					</section>
 
 			</div>
+		</section>
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; 2025 GIS Lab Project. All rights reserved.</li>
-						<li>Template: <a href="http://html5up.net">HTML5 UP</a></li>
-						<li>Data: <a href="https://atmosphere.copernicus.eu/">Copernicus CAMS</a></li>
-					</ul>
-				</div>
-			</footer>
+	</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+	<!-- Footer -->
+	<footer id="footer" class="wrapper alt">
+		<div class="inner">
+			<ul class="menu">
+				<li>&copy; 2025 GIS Lab Project. All rights reserved.</li>
+				<li>Template: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>Data: <a href="https://atmosphere.copernicus.eu/">Copernicus CAMS</a></li>
+			</ul>
+		</div>
+	</footer>
 
-	</body>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
 </html>
