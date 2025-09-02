@@ -1,27 +1,42 @@
 {
-  "name": "polimi-gis2025",
-  "version": "1.0.0",
-  "description": "Air pollution is the presence of harmful substances in the air, including gases and particulates, that can negatively\r impact human health and the environment. The main sources of air pollution include industrial emissions, vehicle\r exhaust, burning of fossil fuels, agricultural activities, and natural events like wildfires and volcanic eruptions. These\r pollutants contribute to climate change, respiratory diseases, and environmental degradation.",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "name": "ol",
+  "version": "8.2.0",
+  "description": "OpenLayers mapping library",
+  "keywords": [
+    "map",
+    "mapping",
+    "openlayers"
+  ],
+  "homepage": "https://openlayers.org/",
+  "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/astroedo/polimi-GIS2025.git"
+    "url": "git://github.com/openlayers/openlayers.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/astroedo/polimi-GIS2025/issues"
+    "url": "https://github.com/openlayers/openlayers/issues"
   },
-  "homepage": "https://github.com/astroedo/polimi-GIS2025#readme",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/openlayers"
+  },
   "dependencies": {
-    "ol": "^10.5.0",
-    "ol-layerswitcher": "^4.1.2",
-    "rbush": "^4.0.1",
-    "vite": "^6.3.5"
-  }
+    "color-rgba": "^3.0.0",
+    "color-space": "^2.0.1",
+    "earcut": "^2.2.3",
+    "geotiff": "^2.0.7",
+    "pbf": "3.2.1",
+    "rbush": "^3.0.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "sideEffects": [
+    "proj.js",
+    "ol.css"
+  ],
+  "main": "index.js"
 }

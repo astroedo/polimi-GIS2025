@@ -13,65 +13,75 @@ import { Style, Fill, Stroke } from 'ol/style';
 
 
 // OpenStreetMap base map
-let osm = new Tile({
-    title: "Open Street Map",
-    type: "base",
-    visible: true,
-    source: new OSM()
+var osm = new Tile({
+title: 'OpenStreetMap',
+type: 'base',
+visible: true,
+source: new OSM()
 });
 
 // Colombia Administrative Boundaries
-let colombiaBoundary = new Image({
-    title: "Colombia Administrative level 0",
+let LayerNOX_1 = new Image({
+    title: "no2_concentration_map_2020",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_concentration_map_2020' }
     }),
-    visible: true
+    visible: false
 });
 
 // Colombia Administrative level 1
-var colombiaDepartments = new Image({
-    title: "Colombia Administrative level 1",
+var LayerNOX_2  = new Image({
+    title: "CAMS_no2_2022_12",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm1' }
+        url: 'https://www.gis-gisgeoserver_01.polimi.it/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_CAMS_no2_2022_12' }
     }),
-    opacity: 0.5,
-    visible: true
+    visible: false
 });
 
 // Colombia Roads
-var colombiaRoads = new Image({
-    title: "Colombia Roads",
+var LayerNOX_3  = new Image({
+    title: "GERMANY_no2_2017_2021_AAD_map_2022",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_roads' }
+        url: 'https://www.gis-geoserver.polimi.gisgeoserver_01/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_2017_2021_AAD_map_2022', 'STYLES': 'GERMANY_no2_2017_2021_AAD_2022' }
     }),
-    visible: true
+    visible: false
 });
 
 // Colombia Rivers
-var colombiaRivers = new Image({
-    title: "Colombia Rivers",
+var LayerNOX_4  = new Image({
+    title: "no2_concentration_map_2020",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_rivers' }
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_concentration_map_2020' }
     }),
-    visible: true,
-    minResolution: 1000,
-    maxResolution: 5000
+    visible: false,
 });
 
 // Add the layer groups code here:
+let basemapLayers = new Group({
+    title: 'Base Maps',
+    layers: [osm]
+});
+let overlayLayers = new Group({
+    title: 'Overlay Layers',
+    layers: [
+        LayerNOX_1 ,
+        LayerNOX_2 ,
+        LayerNOX_3 ,
+        LayerNOX_4 
+    ]
+});
 
 
 // Map Initialization
-let mapOrigin = fromLonLat([51.1, 10.4]);
+let mapOrigin = fromLonLat([10.4, 51.1]);
 let zoomLevel = 5;
 let map = new Map({
     target: document.getElementById('map'),
-    layers: [osm, colombiaBoundary, colombiaDepartments, colombiaRivers, colombiaRoads],
+    layers: [],
     view: new View({
         center: mapOrigin,
         zoom: zoomLevel
@@ -80,10 +90,20 @@ let map = new Map({
 });
 
 // Add the map controls here:
-
+map.addControl(new ScaleLine());
+map.addControl(new FullScreen());
+map.addControl(
+new MousePosition({
+coordinateFormat: createStringXY(4),
+projection: 'EPSG:4326',
+className: 'custom-control',
+placeholder: '0.0000, 0.0000'
+})
+);
 
 // Add the LayerSwitcher control here:
-
+var layerSwitcher = new LayerSwitcher({});
+map.addControl(layerSwitcher);
 
 // Add the Stadia Basemaps here:
 
@@ -109,8 +129,9 @@ let map = new Map({
 // Add the pointermove event code here:
 
 
-// Add the legend code here:
+
 
 
 // Add the layer groups to the map here, at the end of the script!
-
+map.addLayer(basemapLayers);
+map.addLayer(overlayLayers);
