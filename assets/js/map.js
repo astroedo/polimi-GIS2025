@@ -24,8 +24,8 @@ let osm = new Tile({
 let colombiaBoundary = new Image({
     title: "Colombia Administrative level 0",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm0', 'STYLES': 'restricted' }
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_concentration_map_2020' }
     }),
     visible: true
 });
@@ -67,7 +67,7 @@ var colombiaRivers = new Image({
 
 
 // Map Initialization
-let mapOrigin = fromLonLat([-74, 4.6]);
+let mapOrigin = fromLonLat([51.1, 10.4]);
 let zoomLevel = 5;
 let map = new Map({
     target: document.getElementById('map'),
@@ -76,7 +76,7 @@ let map = new Map({
         center: mapOrigin,
         zoom: zoomLevel
     }),
-    projection: 'EPSG:3857'
+    projection: 'EPSG:4326'
 });
 
 // Add the map controls here:
