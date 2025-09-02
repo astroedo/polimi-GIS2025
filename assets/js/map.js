@@ -20,7 +20,7 @@ visible: true,
 source: new OSM()
 });
 
-// Colombia Administrative Boundaries
+// NOX LAYERS
 let LayerNOX_1 = new Image({
     title: "no2_concentration_map_2020",
     source: new ImageWMS({
@@ -30,32 +30,66 @@ let LayerNOX_1 = new Image({
     visible: false
 });
 
-// Colombia Administrative level 1
 var LayerNOX_2  = new Image({
     title: "CAMS_no2_2022_12",
     source: new ImageWMS({
-        url: 'https://www.gis-gisgeoserver_01.polimi.it/gisgeoserver_01/wms',
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_CAMS_no2_2022_12' }
     }),
     visible: false
 });
 
-// Colombia Roads
 var LayerNOX_3  = new Image({
     title: "GERMANY_no2_2017_2021_AAD_map_2022",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.gisgeoserver_01/geoserver/wms',
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_2017_2021_AAD_map_2022', 'STYLES': 'GERMANY_no2_2017_2021_AAD_2022' }
     }),
     visible: false
 });
 
-// Colombia Rivers
 var LayerNOX_4  = new Image({
     title: "no2_concentration_map_2020",
     source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
         params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_concentration_map_2020' }
+    }),
+    visible: false,
+});
+
+// PM2.5 LAYERS
+let LayerPM25_1 = new Image({
+    title: "pm2p5_2017_2021_AAD_map _2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_pm2p5_2017_2021_AAD_map _2022' , 'STYLES': 'Germany_pm2p5 _2017-2021_AAD_map _2022'}
+    }),
+    visible: false
+});
+
+var LayerPM25_2  = new Image({
+    title: "pm2p5_concentration_2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_pm2p5_concentration_2020' }
+    }),
+    visible: false
+});
+
+var LayerPM25_3  = new Image({
+    title: "average_pm2p5_2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_average_pm2p5_2022' }
+    }),
+    visible: false
+});
+
+var LayerPM25_4  = new Image({
+    title: "CAMS_pm2p5_2022_12",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_CAMS_pm2p5_2022_12' }
     }),
     visible: false,
 });
@@ -65,8 +99,8 @@ let basemapLayers = new Group({
     title: 'Base Maps',
     layers: [osm]
 });
-let overlayLayers = new Group({
-    title: 'Overlay Layers',
+let nox = new Group({
+    title: 'NOx',
     layers: [
         LayerNOX_1 ,
         LayerNOX_2 ,
@@ -74,7 +108,15 @@ let overlayLayers = new Group({
         LayerNOX_4 
     ]
 });
-
+let pm2p5 = new Group({
+    title: 'PM2.5',
+    layers: [
+        LayerPM25_1 ,
+        LayerPM25_2 ,
+        LayerPM25_3 ,
+        LayerPM25_4 
+    ]
+});
 
 // Map Initialization
 let mapOrigin = fromLonLat([10.4, 51.1]);
@@ -134,4 +176,7 @@ map.addControl(layerSwitcher);
 
 // Add the layer groups to the map here, at the end of the script!
 map.addLayer(basemapLayers);
-map.addLayer(overlayLayers);
+map.addLayer(nox);
+map.addLayer(pm2p5);
+map.addLayer(pm10);
+
