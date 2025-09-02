@@ -25,7 +25,7 @@ let LayerNOX_1 = new Image({
     title: "no2_concentration_map_2020",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
-        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_concentration_map_2020' }
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_concentration_map_2020', 'STYLES': 'LC_style' }
     }),
     visible: false
 });
@@ -56,6 +56,23 @@ var LayerNOX_4  = new Image({
     }),
     visible: false,
 });
+var LayerNOX_5  = new Image({
+    title: "no2_2020_bivariate",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:GERMANY_no2_2020_bivariate' }
+    }),
+    visible: false,
+});
+
+/*
+var wfsUrl = "https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms?" +
+"service=WFS&" +
+"version=2.0.0&" +
+"request=GetFeature&" +
+"typeName=gis:COL_water_areas&" +
+"srsname=EPSG:3857&" +
+"outputFormat=application/json";*/
 
 // PM2.5 LAYERS
 let LayerPM25_1 = new Image({
@@ -94,10 +111,109 @@ var LayerPM25_4  = new Image({
     visible: false,
 });
 
+var LayerPM25_5  = new Image({
+    title: "pm2p5_2020_bivariate",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'Germany_pm2p5_2020_bivariate' }
+    }),
+    visible: false,
+});
+
+
+// PM10 LAYERS
+let LayerPM10_1 = new Image({
+    title: "pm10_2017_2021_AAD_map_2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_pm10_2017_2021_AAD_map_2022', 'STYLES': 'Germany_pm2p5 _2017-2021_AAD_map _2022' }
+    }),
+    visible: false
+});
+
+var LayerPM10_2  = new Image({
+    title: "CAMS_pm10_2022_12",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_CAMS_pm10_2022_12' }
+    }),
+    visible: false
+});
+
+var LayerPM10_3  = new Image({
+    title: "average_pm10_2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_average_pm10_2022' }
+    }),
+    visible: false
+});
+
+var LayerPM10_4  = new Image({
+    title: "pm10_concentration_2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_pm10_concentration_2020' }
+    }),
+    visible: false,
+});
+
+var LayerPM10_5  = new Image({
+    title: "pm10_2020_bivariate",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'Germany_pm10_2020_bivariate' }
+    }),
+    visible: false,
+});
+
+var LayerLC  = new Image({
+    title: "LC_reclassified_2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
+        params: { 'LAYERS': 'gisgeoserver_01:Germany_LC_reclassified_2022', 'STYLES': 'LC_style' }
+    }),
+    visible: false,
+});
+/*
+
+var wfsUrlPM10 = "https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms?" +
+"service=WFS&" +
+"version=2.0.0&" +
+"request=GetFeature&" +
+"typeName=gisgeoserver_01:Germany_pm10_2020_bivariate&" +
+"srsname=EPSG:4326&" +
+"outputFormat=application/json";
+
+let wfsSourcePM10 = new VectorSource({});
+
+let wfsLayerPM10 = new Vector({
+title: "pm10_2020_bivariate",
+source: wfsSourcePM10,
+visible: false,
+style: "bivariate_5x5_legend_vector_v2"
+});
+
+fetch(wfsUrlPM10)
+.then((response) => {
+if (!response.ok) {
+throw new Error('Error ' + response.statusText);
+}
+response.json().then(data => {
+wfsSourcePM10.addFeatures(
+new GeoJSON().readFeatures(data)
+);
+})
+});
+*/
 // Add the layer groups code here:
 let basemapLayers = new Group({
     title: 'Base Maps',
     layers: [osm]
+});
+let landCover = new Group({
+    title: 'Land cover',
+    layers: [LayerLC]
 });
 let nox = new Group({
     title: 'NOx',
@@ -105,7 +221,8 @@ let nox = new Group({
         LayerNOX_1 ,
         LayerNOX_2 ,
         LayerNOX_3 ,
-        LayerNOX_4 
+        LayerNOX_4 ,
+        LayerNOX_5
     ]
 });
 let pm2p5 = new Group({
@@ -114,9 +231,23 @@ let pm2p5 = new Group({
         LayerPM25_1 ,
         LayerPM25_2 ,
         LayerPM25_3 ,
-        LayerPM25_4 
+        LayerPM25_4,
+        LayerPM25_5 
     ]
 });
+let pm10 = new Group({
+    title: 'PM10',
+    layers: [
+        LayerPM10_1 ,
+        LayerPM10_2 ,
+        LayerPM10_3 ,
+        LayerPM10_4,
+        LayerPM10_5
+    ]
+});
+
+//pm10.getLayers().extend([wfsLayerPM10]);
+
 
 // Map Initialization
 let mapOrigin = fromLonLat([10.4, 51.1]);
@@ -176,6 +307,7 @@ map.addControl(layerSwitcher);
 
 // Add the layer groups to the map here, at the end of the script!
 map.addLayer(basemapLayers);
+map.addLayer(landCover);
 map.addLayer(nox);
 map.addLayer(pm2p5);
 map.addLayer(pm10);
