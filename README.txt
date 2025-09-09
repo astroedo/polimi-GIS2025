@@ -1,33 +1,72 @@
-Hyperspace by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+# Air Quality Mapping: Land Cover Correlation and Population Exposure
 
+## Project Overview
 
-So I've had the wireframe for this particular design kicking around for some time, but with all
-the other interesting (and in some cases, semi-secret) projects I've been working on it took me
-a little while to get to actually designing and coding it. Fortunately, things have eased up
-enough for me to finaly get around to it, so I'm happy to introduce Hyperspace: a fun, blocky,
-one-page design with a lot of color, a bit of animation, and an additional "generic" page template
-(because hey, even one-page sites usually need an interior page or two). Hope you dig it :)
+This project harnesses free and open geospatial data from the Copernicus programme to study historical trends of air pollutants in relation to environmental variables and evaluate exceedance above recommended health guidelines in Germany.
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+**Academic Year:** 2024/25  
+**Institution:** Politecnico di Milano  
+**Course:** Geographic Information Systems 
 
-(* = not included)
+## Features
 
-AJ
-aj@lkn.io | @ajlkn
+- **Interactive Pollutant Analysis**: Comprehensive analysis of NO₂, PM2.5, and PM10 concentrations
+- **Bivariate Mapping**: Correlation analysis between pollution levels and population density
+- **Temporal Analysis**: Time series analysis with temporal slider controls (2013-2022)
+- **Population Exposure Assessment**: Evaluation against EU and WHO health guidelines
+- **Interactive WebGIS**: Dynamic visualization with layer switching and transparency controls
 
+## Technical Stack
 
-Credits:
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Mapping Library**: OpenLayers v8.2.0
+- **Web Map Server**: GeoServer
+- **Data Processing**: QGIS
+- **Styling Framework**: Custom CSS with responsive design
+- **Chart Generation**: DataPlotly
 
-	Demo Images:
-		Unsplash (unsplash.com)
+## Project Structure
 
-	Icons:
-		Font Awesome (fontawesome.io)
+```
+├── index.html                 # Main landing page
+├── pages/                     # Individual pollutant analysis pages
+│   ├── no2.html              # Nitrogen Dioxide analysis
+│   ├── pm25.html             # PM2.5 analysis
+│   ├── pm10.html             # PM10 analysis
+│   └── webgis.html           # Interactive WebGIS application
+├── assets/                    # Static assets
+    ├── css/                  # Stylesheets
+    ├── js/                   # JavaScript files
+    └── images/               # Images and visualizations
 
-	Other:
-		jQuery (jquery.com)
-		Scrollex (github.com/ajlkn/jquery.scrollex)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+```
+## Data Sources
+
+- **Air Quality Data**: Copernicus Atmosphere Monitoring Service (CAMS)
+- **Land Cover Data**: ESA Climate Change Initiative (CCI)
+- **Population Data**: WorldPop
+- **Study Period**: 2013-2022
+- **Study Area**: Germany
+
+## Methodology
+
+1. **Data Acquisition**: Downloaded CAMS NetCDF files, ESA CCI land cover maps, and WorldPop population data
+2. **Temporal Aggregation**: Processed hourly data to monthly and annual averages using QGIS
+3. **Spatial Analysis**: Conducted zonal statistics, land cover reclassification, and bivariate mapping
+4. **Population Exposure Assessment**: Evaluated exposure against health guidelines
+5. **Trend Analysis**: Analyzed time series data for long-term trends
+6. **Visualization**: Created interactive maps and charts for effective communication
+
+## License
+
+© 2025 GIS Lab Project. All rights reserved.
+
+**Template**: [HTML5 UP](http://html5up.net)  
+**Data**: [Copernicus CAMS](https://atmosphere.copernicus.eu/)
+
+## Acknowledgments
+
+- Politecnico di Milano - Geographic Information Systems Lab
+- Copernicus Programme for providing open geospatial data
+- HTML5 UP for the website template
+- OpenLayers community for the mapping framework
