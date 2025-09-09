@@ -1,4 +1,4 @@
-# Air Quality Mapping: Land Cover Correlation and Population Exposure
+Air Quality Mapping: Land Cover Correlation and Population Exposure
 
 ## Project Overview
 
@@ -70,3 +70,4 @@ This project harnesses free and open geospatial data from the Copernicus program
 - Copernicus Programme for providing open geospatial data
 - HTML5 UP for the website template
 - OpenLayers community for the mapping framework
+
