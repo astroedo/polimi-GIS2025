@@ -1,17 +1,21 @@
-import 'ol/ol.css';
-import 'ol-layerswitcher/dist/ol-layerswitcher.css';
+// Import the main OpenLayers components from Skypack
+import Map from 'https://cdn.skypack.dev/ol/Map.js';
+import View from 'https://cdn.skypack.dev/ol/View.js';
+import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
+import ImageLayer from 'https://cdn.skypack.dev/ol/layer/Image.js';
+import GroupLayer from 'https://cdn.skypack.dev/ol/layer/Group.js';
+import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
+import ImageWMS from 'https://cdn.skypack.dev/ol/source/ImageWMS.js';
+import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
+import { ScaleLine, FullScreen, MousePosition } from 'https://cdn.skypack.dev/ol/control.js';
+import { createStringXY } from 'https://cdn.skypack.dev/ol/coordinate.js';
+import LayerSwitcher from 'https://cdn.jsdelivr.net/npm/ol-layerswitcher@4.1.1/+esm';
+import XYZ from 'https://cdn.skypack.dev/ol/source/XYZ.js';
 
-import { Map, View } from 'ol';
-import { Tile, Image, Group } from 'ol/layer';
-import { OSM, ImageWMS } from 'ol/source';
-import { fromLonLat } from 'ol/proj';
-import { ScaleLine, FullScreen, MousePosition } from 'ol/control';
-import LayerSwitcher from 'ol-layerswitcher';
-import { createStringXY } from 'ol/coordinate';
 
 // Funzione helper
 function createWMSLayer(title, layerName, style = null, visible = false) {
-  return new Image({
+  return new ImageLayer({
     title,
     source: new ImageWMS({
       url: 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_01/wms',
@@ -25,16 +29,27 @@ function createWMSLayer(title, layerName, style = null, visible = false) {
 }
 
 // Layer base
-const osm = new Tile({ title: 'OpenStreetMap', type: 'base', visible: true, source: new OSM() });
-const baseMaps = new Group({ title: 'Base Maps', layers: [osm] });
+const osm = new TileLayer({ title: 'OpenStreetMap', type: 'base', visible: true, source: new OSM() });
+// Add after the OSM layer
+const satellite = new TileLayer({ 
+    title: 'Satellite', 
+    type: 'base', 
+    visible: false, 
+    source: new XYZ({
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        attributions: '© Esri'
+    })
+});
+
+const baseMaps = new GroupLayer({ title: 'Base Maps', layers: [osm, satellite] });
 
 // Gruppi ordinati
-const landCover = new Group({
+const landCover = new GroupLayer({
   title: 'Land Cover',
   layers: [ createWMSLayer("LC reclassified 2022", "Germany_LC_reclassified_2022", "LC_style") ]
 });
 
-const nox = new Group({
+const nox = new GroupLayer({
   title: 'NO₂ (Nitrogen Dioxide)',
   layers: [
     createWMSLayer('NO₂ Concentration Map 2020', 'gisgeoserver_01:GERMANY_no2_concentration_map_2020', 'LC_style'),
@@ -45,7 +60,7 @@ const nox = new Group({
   ]
 });
 
-const pm25 = new Group({
+const pm25 = new GroupLayer({
   title: 'PM2.5 (Fine Particulate Matter)',
   layers: [
     createWMSLayer('PM2.5 Concentration 2020', 'gisgeoserver_01:Germany_pm2p5_concentration_2020'),
@@ -56,7 +71,7 @@ const pm25 = new Group({
   ]
 });
 
-const pm10 = new Group({
+const pm10 = new GroupLayer({
   title: 'PM10 (Coarse Particulate Matter)',
   layers: [
     createWMSLayer('PM10 Concentration 2020', 'gisgeoserver_01:Germany_pm10_concentration_2020'),
@@ -87,14 +102,13 @@ const layerSwitcher = new LayerSwitcher({
   activationMode: 'click',
   startActive: false,
   tipLabel: 'Legenda',
-  groupSelectStyle: 'none'  // nessun checkbox a livello di gruppo
+  groupLayerSelectStyle: 'none'  
 });
 map.addControl(layerSwitcher);
 
-// Aggiungi gruppi
+// Correct - use 'group' as the variable name
 [baseMaps, landCover, nox, pm25, pm10].forEach(group => map.addLayer(group));
 
-// Funzione per simulare radio-button per gruppo
 function enableRadioBehavior(group) {
   group.getLayers().forEach(lyr => {
     lyr.on('change:visible', () => {
@@ -111,3 +125,102 @@ function enableRadioBehavior(group) {
 
 // Abilita il comportamento "radio" solo per i gruppi desiderati
 [nox, pm25, pm10].forEach(enableRadioBehavior);
+
+// Connect HTML controls to map layers
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Set initial visibility to match default radio buttons
+    nox.setVisible(true);
+    pm25.setVisible(false);
+    pm10.setVisible(false);
+    
+    // Make sure the first layer in NO2 group is visible by default
+    if (nox.getLayers().getLength() > 0) {
+        nox.getLayers().getArray()[0].setVisible(true);
+    }
+    
+    // Pollutant controls
+    const pollutantRadios = document.querySelectorAll('input[name="pollutant"]');
+    pollutantRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            console.log('Switching to pollutant:', this.value);
+            
+            // Hide all pollutant groups
+            nox.setVisible(false);
+            pm25.setVisible(false);
+            pm10.setVisible(false);
+            
+            // Hide all individual layers first
+            [nox, pm25, pm10].forEach(group => {
+                group.getLayers().forEach(layer => {
+                    layer.setVisible(false);
+                });
+            });
+            
+            // Show selected group and make first layer visible
+            switch(this.value) {
+                case 'no2':
+                    nox.setVisible(true);
+                    if (nox.getLayers().getLength() > 0) {
+                        nox.getLayers().getArray()[0].setVisible(true);
+                    }
+                    break;
+                case 'pm25':
+                    pm25.setVisible(true);
+                    if (pm25.getLayers().getLength() > 0) {
+                        pm25.getLayers().getArray()[0].setVisible(true);
+                    }
+                    break;
+                case 'pm10':
+                    pm10.setVisible(true);
+                    if (pm10.getLayers().getLength() > 0) {
+                        pm10.getLayers().getArray()[0].setVisible(true);
+                    }
+                    break;
+            }
+        });
+    });
+    
+    // Base map controls
+    const basemapRadios = document.querySelectorAll('input[name="basemap"]');
+    basemapRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            console.log('Switching basemap to:', this.value);
+            
+            if(this.value === 'osm') {
+                osm.setVisible(true);
+                satellite.setVisible(false);
+            } else if(this.value === 'satellite') {
+                osm.setVisible(false);
+                satellite.setVisible(true);
+            }
+        });
+    });
+    
+    // Additional layer controls (checkboxes)
+    const boundariesCheckbox = document.getElementById('boundaries-layer');
+    if (boundariesCheckbox) {
+        boundariesCheckbox.addEventListener('change', function() {
+            console.log('Administrative boundaries:', this.checked ? 'ON' : 'OFF');
+            // Implement boundaries layer functionality if needed
+        });
+    }
+
+    const populationCheckbox = document.getElementById('population-layer');
+    if (populationCheckbox) {
+        populationCheckbox.addEventListener('change', function() {
+            console.log('Population density:', this.checked ? 'ON' : 'OFF');
+            // Implement population layer functionality if needed
+        });
+    }
+});
+
+// Force map to resize properly (fix for the top-left corner issue)
+setTimeout(() => {
+    map.updateSize();
+}, 100);
+
+// Also force resize when window is resized
+window.addEventListener('resize', () => {
+    map.updateSize();
+});
